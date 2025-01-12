@@ -77,7 +77,7 @@ public class JDialogConnectionStatus extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/w2s_ConnectionStatus.png"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo/w2s_ConnectionStatus.png"))); // NOI18N
         jLabelLogo.setText("jLabel1");
         jLabelLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -116,7 +116,7 @@ public class JDialogConnectionStatus extends javax.swing.JDialog {
                 .addComponent(jButtonConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabelConnectionResult)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

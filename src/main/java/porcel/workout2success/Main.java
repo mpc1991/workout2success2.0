@@ -45,8 +45,9 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jMenuBarHome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jMenuBarHome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 3, true));
 
+        jMenuFile.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jMenuFile.setText("File");
 
         jMenuItemLogout.setText("Logout...");
@@ -59,6 +60,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBarHome.add(jMenuFile);
 
+        jMenuEdit.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jMenuEdit.setText("Edit");
 
         jMenuItemAbout.setText("About...");
@@ -97,7 +99,7 @@ public class Main extends javax.swing.JFrame {
         jPanelHome = null;
         jPanelHome = new JPanelHome(this);
         jPanelHome.InicializejPanels();
-        jPanelHome.setBounds(0, 36, 1280, 684);
+        jPanelHome.setBounds(0, 40, 1220, 600);
 
         getContentPane().add(jPanelHome);
         getContentPane().add(jMenuBarHome);
@@ -169,22 +171,22 @@ public class Main extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("CDE/Motif".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("CDE/Motif".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
         //</editor-fold>
 
         /* Create and display the form */

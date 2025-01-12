@@ -345,7 +345,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jButtonRefresh = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        setLayout(null);
+        setLayout(new java.awt.BorderLayout());
 
         jPanelHomeUsers.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelHomeUsers.setLayout(null);
@@ -556,10 +556,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             }
         });
         jPanelHomeUsers.add(jButtonRefresh);
-        jButtonRefresh.setBounds(1040, 10, 43, 20);
+        jButtonRefresh.setBounds(1040, 10, 48, 20);
 
-        add(jPanelHomeUsers);
-        jPanelHomeUsers.setBounds(0, 0, 1160, 540);
+        add(jPanelHomeUsers, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonChangeExerciceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeExerciceActionPerformed

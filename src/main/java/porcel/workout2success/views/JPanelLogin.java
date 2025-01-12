@@ -108,11 +108,11 @@ public class JPanelLogin extends javax.swing.JPanel {
         jLabelInsertPassword.setBounds(10, 440, 97, 40);
 
         jLabelLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/w2s_logo7.png"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo/Designer (6).png"))); // NOI18N
         jLabelLogo.setText("jLabel3");
         jLabelLogo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelCredentials.add(jLabelLogo);
-        jLabelLogo.setBounds(10, 10, 346, 363);
+        jLabelLogo.setBounds(10, 10, 346, 1028);
 
         jButtonLogin.setText("Login");
         jButtonLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -172,7 +172,7 @@ public class JPanelLogin extends javax.swing.JPanel {
         jPanelWelcomeMessage.add(jLabelLine5);
         jLabelLine5.setBounds(10, 160, 383, 16);
 
-        jLabelBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banners/830x300.png"))); // NOI18N
+        jLabelBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/banners/830x300.png"))); // NOI18N
         jPanelWelcomeMessage.add(jLabelBanner);
         jLabelBanner.setBounds(330, -120, 740, 230);
 

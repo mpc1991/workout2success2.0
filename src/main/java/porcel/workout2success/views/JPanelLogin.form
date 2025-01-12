@@ -93,7 +93,7 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/w2s_logo7.png"/>
+                  <Image iconType="3" name="/logo/Designer (6).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jLabel3"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -244,7 +244,7 @@
             <Component class="javax.swing.JLabel" name="jLabelBanner">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/banners/830x300.png"/>
+                  <Image iconType="3" name="/banners/830x300.png"/>
                 </Property>
               </Properties>
               <Constraints>
