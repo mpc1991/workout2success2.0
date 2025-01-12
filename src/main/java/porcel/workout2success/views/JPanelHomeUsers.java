@@ -1,14 +1,21 @@
 package porcel.workout2success.views;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import net.miginfocom.swing.MigLayout;
 import porcel.workout2success.Main;
@@ -55,7 +62,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         DefaultTableModel dtmjTableUsersExercicis = new DefaultTableModel();
         dtmjTableUsersExercicis.setColumnIdentifiers(new String[]{"ID", "Nom Exercici", "Descripció", "Demo foto"});
         jTableUsersExercicis.setModel(dtmjTableUsersExercicis);
-
     }
 
     private void refresh() {
@@ -83,19 +89,41 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     // Metodo para obtener la lista de usuarios del instructor que ha iniciado sesión en la aplicación.
     public void getListMyUsers() {
-        if (jListUsuaris == null) {
-            jListUsuaris = new javax.swing.JList<>();
-            jScrollPaneUsersList.setViewportView(jListUsuaris);
-        }
-
+        jScrollPaneUsersList.setViewportView(jPaneUsersList);
+        jPaneUsersList.setLayout(new MigLayout(
+                "wrap 2, fill",
+                "5[grow, fill]5[grow, fill]5",
+                "5[grow]5"
+        ));
+        
+        jPaneUsersList.removeAll();
+        
         UsuariDAO usuariDAO = new UsuariDAOImpl();
         try {
             var usuaris = usuariDAO.getMyUsers(sessionUsername);
-            DefaultListModel<Usuari> dfmu = new DefaultListModel<>();
+            CustomButtonRenderer buttonRenderer = new CustomButtonRenderer();
+
             for (Usuari u : usuaris) {
-                dfmu.addElement(u);
+                JButton userButton = new JButton(u.getNom());
+                userButton.setActionCommand(String.valueOf(u.getId()));
+
+                // Estilo por defecto
+                buttonRenderer.styleButton(userButton, false);
+                // Agregar hover y click
+                buttonRenderer.addHoverAndClickListener(userButton);
+                // Acción al hacer clic
+                userButton.addActionListener(e -> {
+                    String userId = e.getActionCommand();
+                    int userIdInt = Integer.parseInt(userId);
+                    getListMyUsersWorkouts(userIdInt);
+                });
+
+                // Agregar el botón al JPanel con MigLayout
+                jPaneUsersList.add(userButton, "grow, push");
             }
-            jListUsuaris.setModel(dfmu);
+
+            jPaneUsersList.revalidate();
+            jPaneUsersList.repaint();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -120,6 +148,8 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             }
 
             jTableUsersWorkouts.setModel(dtm);
+            // Aplicar el CustomTableCellRenderer para la tabla
+            jTableUsersWorkouts.setDefaultRenderer(Object.class, new CustomTableCellRenderer(jTableUsersWorkouts, Color.decode("#D98888"), Color.decode("#800020")));
 
             // Como cojemos los datos de las columnas, necesito que los datos estén impresos en ella, entonces para simplificarlo ocultamos la primera columna.
             jTableUsersWorkouts.getColumnModel().getColumn(0).setMinWidth(0);
@@ -177,6 +207,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 });
             }
             jTableUsersExercicis.setModel(dtm);
+            jTableUsersExercicis.setDefaultRenderer(Object.class, new CustomTableCellRenderer(jTableUsersExercicis, Color.decode("#D98888"), Color.decode("#800020")));
 
             // Como cojemos los datos de las columnas, necesito que los datos estén impresos en ella, entonces para simplificarlo ocultamos la primera columna.
             jTableUsersExercicis.getColumnModel().getColumn(0).setMinWidth(0);
@@ -214,9 +245,14 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void jListUsuarisValueChanged(javax.swing.event.ListSelectionEvent evt) {
         Usuari selectedUser = jListUsuaris.getSelectedValue();
+        // Primer intento de cambiar el background de color
+        //jListUsuaris.setSelectionBackground(Color.decode("#800020")); // Cambia el fondo del elemento seleccionado
+        //jListUsuaris.setSelectionForeground(Color.WHITE); // Cambia el color del texto en la selección
+
         if (selectedUser != null) {
             int userId = selectedUser.getId();
             getListMyUsersWorkouts(userId);
+
         } else {
         }
     }
@@ -238,6 +274,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jPanelHomeUsers = new javax.swing.JPanel();
         jLabelUserList = new javax.swing.JLabel();
         jScrollPaneUsersList = new javax.swing.JScrollPane();
+        jPaneUsersList = new javax.swing.JPanel();
         jButtonAddUser = new javax.swing.JButton();
         jButtonChangeUser = new javax.swing.JButton();
         jButtonDeleteUser = new javax.swing.JButton();
@@ -265,6 +302,13 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jPanelHomeUsers.add(jLabelUserList, java.awt.BorderLayout.CENTER);
 
         jScrollPaneUsersList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPaneUsersList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jScrollPaneUsersListMouseEntered(evt);
+            }
+        });
+        jScrollPaneUsersList.setViewportView(jPaneUsersList);
+
         jPanelHomeUsers.add(jScrollPaneUsersList, java.awt.BorderLayout.PAGE_START);
 
         jButtonAddUser.setText("Add");
@@ -456,6 +500,11 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         main.UnderDevelopment();
     }//GEN-LAST:event_jButtonChangeWorkoutActionPerformed
 
+    private void jScrollPaneUsersListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPaneUsersListMouseEntered
+        jListUsuaris.setSelectionBackground(Color.decode("#D98888")); // Cambia el fondo del elemento seleccionado
+        jListUsuaris.setSelectionForeground(Color.WHITE); // Cambia el color del texto en la selección
+    }//GEN-LAST:event_jScrollPaneUsersListMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddExercice;
@@ -471,6 +520,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelUserList;
     private javax.swing.JLabel jLabelUsersExercicis;
     private javax.swing.JLabel jLabelUsersWorkouts;
+    private javax.swing.JPanel jPaneUsersList;
     private javax.swing.JPanel jPanelHomeUsers;
     private javax.swing.JScrollPane jScrollPaneUsersExercicis;
     private javax.swing.JScrollPane jScrollPaneUsersList;
@@ -480,32 +530,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void InicializejPanels() {
-//        jPanelHomeUsers.setBounds(0, 0, 900, 600);
-//        jLabelUserList.setBounds(10, 10, 150, 30);
-//        jScrollPaneUsersList.setBounds(10, 40, 150, 510);
-//        jListUsuaris.setBounds(10, 10, 130, 495);
-//        jButtonAddUser.setBounds(10, 555, 50, 30);
-//        jButtonChangeUser.setBounds(60, 555, 50, 30);
-//        jButtonDeleteUser.setBounds(110, 555, 50, 30);
-//
-//        jLabelUsersWorkouts.setBounds(170, 10, 370, 30);
-//        jScrollPaneUsersWorkout.setBounds(170, 40, 350, 210);
-//        jTableUsersWorkouts.setBounds(5, 5, 350, 195);//
-//        jButtonAddWorkout.setBounds(170, 256, 119, 30);
-//        jButtonChangeWorkout.setBounds(284, 256, 119, 30);
-//        jButtonDeleteWorkout.setBounds(404, 256, 117, 30);
-//
-//        jLabelUsersExercicis.setBounds(525, 10, 370, 30);
-//        jScrollPaneUsersExercicis.setBounds(525, 40, 365, 210);
-//        jTableUsersExercicis.setBounds(5, 5, 355, 180);//
-//        jButtonAddExercice.setBounds(525, 256, 120, 30);
-//        jButtonChangeExercice.setBounds(645, 256, 120, 30);
-//        jButtonDeleteExercice.setBounds(765, 256, 125, 30);
-//
-//        jButtonRefresh.setBounds(828, 1, 70, 30);
         jPanelHomeUsers.setLayout(new MigLayout(
                 "wrap 10, fill",
-                "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5",
+                "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5",
                 "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5"
         ));
         this.add(jPanelHomeUsers, java.awt.BorderLayout.CENTER);
@@ -516,38 +543,20 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jPanelHomeUsers.add(jButtonDeleteUser, "cell 2 10");
 
         jPanelHomeUsers.add(jLabelUsersWorkouts, "cell 4 0, span 6");
-        jPanelHomeUsers.add(jScrollPaneUsersWorkout, "cell 4 1, span 7 2");
+        jPanelHomeUsers.add(jScrollPaneUsersWorkout, "cell 4 1, span 6 2");
         jPanelHomeUsers.add(jButtonAddWorkout, "cell 4 4, span 2");
         jPanelHomeUsers.add(jButtonChangeWorkout, "cell 6 4, span 2");
-        jPanelHomeUsers.add(jButtonDeleteWorkout, "cell 8 4, span 3");
+        jPanelHomeUsers.add(jButtonDeleteWorkout, "cell 8 4, span 2");
 
         jPanelHomeUsers.add(jLabelUsersExercicis, "cell 4 6, span 6");
-        jPanelHomeUsers.add(jScrollPaneUsersExercicis, "cell 4 7, span 7 2");
+        jPanelHomeUsers.add(jScrollPaneUsersExercicis, "cell 4 7, span 6 2");
         jPanelHomeUsers.add(jButtonAddExercice, "cell 4 10, span 2");
         jPanelHomeUsers.add(jButtonChangeExercice, "cell 6 10, span 2");
-        jPanelHomeUsers.add(jButtonDeleteExercice, "cell 8 10, span 3");
+        jPanelHomeUsers.add(jButtonDeleteExercice, "cell 8 10, span 2");
 
-        jPanelHomeUsers.add(jButtonRefresh, "cell 10 0");
-//
-//        jPanelHomeUsers.add(jScrollPaneUsersList, "span 3 4");
+        jPanelHomeUsers.add(jButtonRefresh, "cell 9 0");
         jScrollPaneUsersList.setViewportView(jListUsuaris);
-//        jPanelHomeUsers.add(jButtonAddUser, "dock south");
-//        jPanelHomeUsers.add(jButtonChangeUser, "dock south");
-//        jPanelHomeUsers.add(jButtonDeleteUser, "dock south");
-//
-//        
-//        jPanelHomeUsers.add(jScrollPaneUsersWorkout, "span 5 2");
-//        jScrollPaneUsersWorkout.setViewportView(jTableUsersWorkouts);
-//        jPanelHomeUsers.add(jButtonAddWorkout);
-//        jPanelHomeUsers.add(jButtonChangeWorkout);
-//        jPanelHomeUsers.add(jButtonDeleteWorkout);
-//
-//        jPanelHomeUsers.add(jLabelUsersExercicis);
-//        jPanelHomeUsers.add(jScrollPaneUsersExercicis);
-//        jScrollPaneUsersExercicis.setViewportView(jTableUsersExercicis);
-//        jPanelHomeUsers.add(jButtonAddExercice);
-//        jPanelHomeUsers.add(jButtonChangeExercice);
-//        jPanelHomeUsers.add(jButtonDeleteExercice);
+
     }
 
     private void InicialiceColors() {
@@ -575,4 +584,163 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     private void inicialiceImages() {
 
     }
+
+    // Los tres siguientes métodos están adaptados con MUCHA ayuda de chatGPT pero necesitaba que esto existiese.
+    public class CustomListRenderer extends DefaultListCellRenderer {
+
+        private int hoverIndex = -1;
+
+        public CustomListRenderer(JList<?> list) {
+            list.addMouseMotionListener(new MouseAdapter() {
+                @Override
+                public void mouseMoved(MouseEvent e) {
+                    int index = list.locationToIndex(e.getPoint());
+                    if (hoverIndex != index) {
+                        hoverIndex = index;
+                        list.repaint(); // Redibuja la lista
+                    }
+                }
+            });
+
+            list.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    hoverIndex = -1;
+                    list.repaint(); // Restablece el estilo al salir del área de la lista
+                }
+            });
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+            if (isSelected) {
+                component.setBackground(Color.decode("#800020"));
+                component.setForeground(Color.WHITE);
+            } else if (index == hoverIndex) {
+                component.setBackground(Color.decode("#D98888"));
+                component.setForeground(Color.BLACK);
+            } else {
+                component.setBackground(Color.WHITE);
+                component.setForeground(Color.BLACK);
+            }
+
+            return component;
+        }
+    }
+
+    public class CustomTableCellRenderer extends DefaultTableCellRenderer {
+
+        private int hoverIndex = -1;
+        private Color hoverColor = Color.decode("#D98888"); // Color por defecto para hover
+        private Color selectedColor = Color.decode("#800020"); // Color por defecto para selección
+
+        public CustomTableCellRenderer(JTable table, Color hoverColor, Color selectedColor) {
+            this.hoverColor = hoverColor != null ? hoverColor : this.hoverColor;
+            this.selectedColor = selectedColor != null ? selectedColor : this.selectedColor;
+
+            table.addMouseMotionListener(new MouseAdapter() {
+                @Override
+                public void mouseMoved(MouseEvent e) {
+                    int row = table.rowAtPoint(e.getPoint());
+                    if (hoverIndex != row) {
+                        hoverIndex = row;
+                        table.repaint(); // Redibuja la tabla
+                    }
+                }
+            });
+
+            table.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    hoverIndex = -1;
+                    table.repaint(); // Restablece el estilo al salir del área de la tabla
+                }
+            });
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            if (isSelected) {
+                component.setBackground(selectedColor);
+                component.setForeground(Color.WHITE);
+            } else if (row == hoverIndex) {
+                component.setBackground(hoverColor);
+                component.setForeground(Color.BLACK);
+            } else {
+                component.setBackground(Color.WHITE);
+                component.setForeground(Color.BLACK);
+            }
+
+            return component;
+        }
+    }
+
+    public class CustomButtonRenderer {
+
+        private int hoverIndex = -1;
+        private Color hoverColor = Color.decode("#D98888"); // Color de hover
+        private Color selectedColor = Color.decode("#800020"); // Color de selección (cuando se hace clic)
+        private JButton selectedButton = null; // Para recordar cuál es el botón seleccionado
+
+        public CustomButtonRenderer() {
+            // No se necesita panel porque cada botón maneja su propio estado.
+        }
+
+        // Método que configura los botones
+        public void styleButton(JButton button, boolean isSelected) {
+            if (isSelected) {
+                button.setBackground(selectedColor);
+                button.setForeground(Color.WHITE);
+            } else {
+                button.setBackground(Color.WHITE);
+                button.setForeground(Color.BLACK);
+            }
+        }
+
+        // Agregar listeners para el hover y click
+        public void addHoverAndClickListener(JButton button) {
+            button.addMouseMotionListener(new MouseAdapter() {
+                @Override
+                public void mouseMoved(MouseEvent e) {
+                    // Solo cambiar el color si no está seleccionado
+                    if (selectedButton != button) {
+                        button.setBackground(hoverColor); // Cambiar color de fondo al pasar el ratón
+                    }
+                }
+            });
+
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    // Si el botón no está seleccionado, restaurar el color original
+                    if (selectedButton != button) {
+                        button.setBackground(Color.WHITE);
+                        button.setForeground(Color.BLACK);
+                    }
+                }
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // Si el botón no está seleccionado, seleccionarlo
+                    if (selectedButton != button) {
+                        // Restaurar el color original del botón seleccionado anterior
+                        if (selectedButton != null) {
+                            selectedButton.setBackground(Color.WHITE);
+                            selectedButton.setForeground(Color.BLACK);
+                        }
+
+                        // Marcar este botón como seleccionado
+                        selectedButton = button;
+                        button.setBackground(selectedColor);
+                        button.setForeground(Color.WHITE);
+                    }
+                }
+            });
+        }
+    }
+
 }
