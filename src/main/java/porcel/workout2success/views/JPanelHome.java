@@ -261,7 +261,7 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonOptionsMousePressed
 
     private void jButtonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionsActionPerformed
-        // TODO add your handling code here:
+        jPanelUsers.setVisible(false);
     }//GEN-LAST:event_jButtonOptionsActionPerformed
 
     private javax.swing.JPanel jMenuBar1;

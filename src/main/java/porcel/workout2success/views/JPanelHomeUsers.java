@@ -1,9 +1,16 @@
 package porcel.workout2success.views;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.miginfocom.swing.MigLayout;
 import porcel.workout2success.Main;
 import porcel.workout2success.dto.Exercici;
 import porcel.workout2success.dto.ExerciciDAO;
@@ -28,80 +35,17 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         initComponents();
         this.jPanelHome = jPanelHome;
         this.main = main;
-        inicialize();
 
         setSize(900, 600);
-        jPanelHomeUsers.setBounds(0, 0, 900, 600);
-        jLabelUserList.setBounds(10, 10, 150, 30);
-        jScrollPaneUsersList.setBounds(10, 40, 150, 510);
-        jListUsuaris.setBounds(10, 10, 130, 495);
-        jButtonAddUser.setBounds(10, 555, 50, 30);
-        jButtonChangeUser.setBounds(60, 555, 50, 30);
-        jButtonDeleteUser.setBounds(110, 555, 50, 30);
 
-        jLabelUsersWorkouts.setBounds(170, 10, 370, 30);
-        jScrollPaneUsersWorkout.setBounds(170, 40, 350, 210);
-        jTableUsersWorkouts.setBounds(5, 5, 350, 195);//
-        jButtonAddWorkout.setBounds(170, 256, 119, 30);
-        jButtonChangeWorkout.setBounds(284, 256, 119, 30);
-        jButtonDeleteWorkout.setBounds(404, 256, 117, 30);
-
-        jLabelUsersExercicis.setBounds(525, 10, 370, 30);
-        jScrollPaneUsersExercicis.setBounds(525, 40, 365, 210);
-        jTableUsersExercicis.setBounds(5, 5, 355, 180);//
-        jButtonAddExercice.setBounds(525, 256, 120, 30);
-        jButtonChangeExercice.setBounds(645, 256, 120, 30);
-        jButtonDeleteExercice.setBounds(765, 256, 125, 30);
-
-        jLabelAllWorkouts.setBounds(170, 300, 350, 30);
-        jScrollPaneAllWorkouts.setBounds(170, 330, 350, 220);
-        jTableAllWorkouts.setBounds(5, 5, 340, 205);
-        jButtonAddWorkoutToUser.setBounds(170, 555, 350, 30);
-
-        jLabelAllExercices.setBounds(525, 300, 365, 30);
-        jScrollPaneAllExercices.setBounds(525, 330, 365, 220);
-        jTableAllExercices.setBounds(5, 5, 355, 210);
-        jButtonAddExerciceToWorkout.setBounds(525, 555, 365, 30);
-
-        jButtonRefresh.setBounds(828, 1, 70, 30);
-
-        this.add(jPanelHomeUsers);
-        jPanelHomeUsers.add(jLabelUserList);
-
-        jPanelHomeUsers.add(jScrollPaneUsersList);
-        jScrollPaneUsersList.setViewportView(jListUsuaris);
-        jPanelHomeUsers.add(jButtonAddUser);
-        jPanelHomeUsers.add(jButtonChangeUser);
-        jPanelHomeUsers.add(jButtonDeleteUser);
-
-        jPanelHomeUsers.add(jLabelUsersWorkouts);
-        jPanelHomeUsers.add(jScrollPaneUsersWorkout);
-        jScrollPaneUsersWorkout.setViewportView(jTableUsersWorkouts);
-        jPanelHomeUsers.add(jButtonAddWorkout);
-        jPanelHomeUsers.add(jButtonChangeWorkout);
-        jPanelHomeUsers.add(jButtonDeleteWorkout);
-
-        jPanelHomeUsers.add(jLabelUsersExercicis);
-        jPanelHomeUsers.add(jScrollPaneUsersExercicis);
-        jScrollPaneUsersExercicis.setViewportView(jTableUsersExercicis);
-        jPanelHomeUsers.add(jButtonAddExercice);
-        jPanelHomeUsers.add(jButtonChangeExercice);
-        jPanelHomeUsers.add(jButtonDeleteExercice);
-
-        jPanelHomeUsers.add(jLabelAllWorkouts);
-        jPanelHomeUsers.add(jScrollPaneAllWorkouts);
-        jScrollPaneAllWorkouts.setViewportView(jTableAllWorkouts);
-        jPanelHomeUsers.add(jButtonAddWorkoutToUser);
-
-        jPanelHomeUsers.add(jLabelAllExercices);
-        jPanelHomeUsers.add(jScrollPaneAllExercices);
-        jScrollPaneAllExercices.setViewportView(jTableAllExercices);
-        jPanelHomeUsers.add(jButtonAddExerciceToWorkout);
-
+        inicializeTables();
+        InicializejPanels();
+        InicialiceColors();
+        inicialiceImages();
         refresh();
     }
 
-    private void inicialize() {
+    private void inicializeTables() {
         jListUsuaris = new javax.swing.JList<>();
 
         DefaultTableModel dtmUserWorkouts = new DefaultTableModel();
@@ -112,13 +56,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         dtmjTableUsersExercicis.setColumnIdentifiers(new String[]{"ID", "Nom Exercici", "Descripció", "Demo foto"});
         jTableUsersExercicis.setModel(dtmjTableUsersExercicis);
 
-        DefaultTableModel dtmjTableAllWorkouts = new DefaultTableModel();
-        dtmjTableAllWorkouts.setColumnIdentifiers(new String[]{"ID", "Fecha", "ID Usuario", "Comentarios"});
-        jTableAllWorkouts.setModel(dtmjTableAllWorkouts);
-
-        DefaultTableModel dtmjTableAllExercices = new DefaultTableModel();
-        dtmjTableAllExercices.setColumnIdentifiers(new String[]{"ID", "Fecha", "ID Usuario", "Comentarios"});
-        jTableAllExercices.setModel(dtmjTableAllExercices);
     }
 
     private void refresh() {
@@ -217,18 +154,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 });
             }
 
-            jTableAllWorkouts.setModel(dtm);
-
-            // Como cojemos los datos de las columnas, necesito que los datos estén impresos en ella, entonces para simplificarlo ocultamos la primera columna.
-            jTableAllWorkouts.getColumnModel().getColumn(0).setMinWidth(0);
-            jTableAllWorkouts.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTableAllWorkouts.getColumnModel().getColumn(0).setWidth(0);
-
-            // Como cojemos los datos de las columnas, necesito que los datos estén impresos en ella, entonces para simplificarlo ocultamos la primera columna.
-            jTableAllWorkouts.getColumnModel().getColumn(2).setMinWidth(0);
-            jTableAllWorkouts.getColumnModel().getColumn(2).setMaxWidth(0);
-            jTableAllWorkouts.getColumnModel().getColumn(2).setWidth(0);
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -280,12 +205,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                     exercici.getDemoFoto()
                 });
             }
-            jTableAllExercices.setModel(dtm);
-
-            // Como cojemos los datos de las columnas, necesito que los datos estén impresos en ella, entonces para simplificarlo ocultamos la primera columna.
-            jTableAllExercices.getColumnModel().getColumn(0).setMinWidth(0);
-            jTableAllExercices.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTableAllExercices.getColumnModel().getColumn(0).setWidth(0);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -334,29 +253,19 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jButtonAddExercice = new javax.swing.JButton();
         jButtonChangeExercice = new javax.swing.JButton();
         jButtonDeleteExercice = new javax.swing.JButton();
-        jLabelAllWorkouts = new javax.swing.JLabel();
-        jScrollPaneAllWorkouts = new javax.swing.JScrollPane();
-        jTableAllWorkouts = new javax.swing.JTable();
-        jButtonAddWorkoutToUser = new javax.swing.JButton();
-        jLabelAllExercices = new javax.swing.JLabel();
-        jScrollPaneAllExercices = new javax.swing.JScrollPane();
-        jTableAllExercices = new javax.swing.JTable();
-        jButtonAddExerciceToWorkout = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setLayout(new java.awt.BorderLayout());
 
         jPanelHomeUsers.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelHomeUsers.setLayout(null);
+        jPanelHomeUsers.setLayout(new java.awt.BorderLayout());
 
         jLabelUserList.setText("My users");
-        jPanelHomeUsers.add(jLabelUserList);
-        jLabelUserList.setBounds(20, 20, 110, 16);
+        jPanelHomeUsers.add(jLabelUserList, java.awt.BorderLayout.CENTER);
 
         jScrollPaneUsersList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelHomeUsers.add(jScrollPaneUsersList);
-        jScrollPaneUsersList.setBounds(20, 40, 330, 420);
+        jPanelHomeUsers.add(jScrollPaneUsersList, java.awt.BorderLayout.PAGE_START);
 
         jButtonAddUser.setText("Add");
         jButtonAddUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -365,8 +274,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonAddUserActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonAddUser);
-        jButtonAddUser.setBounds(20, 460, 50, 20);
+        jPanelHomeUsers.add(jButtonAddUser, java.awt.BorderLayout.PAGE_END);
 
         jButtonChangeUser.setText("Change");
         jButtonChangeUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -375,17 +283,14 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonChangeUserActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonChangeUser);
-        jButtonChangeUser.setBounds(110, 470, 50, 20);
+        jPanelHomeUsers.add(jButtonChangeUser, java.awt.BorderLayout.LINE_END);
 
         jButtonDeleteUser.setText("Delete");
         jButtonDeleteUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelHomeUsers.add(jButtonDeleteUser);
-        jButtonDeleteUser.setBounds(190, 460, 70, 20);
+        jPanelHomeUsers.add(jButtonDeleteUser, java.awt.BorderLayout.LINE_START);
 
         jLabelUsersWorkouts.setText("User workouts");
-        jPanelHomeUsers.add(jLabelUsersWorkouts);
-        jLabelUsersWorkouts.setBounds(380, 20, 160, 16);
+        jPanelHomeUsers.add(jLabelUsersWorkouts, java.awt.BorderLayout.CENTER);
 
         jScrollPaneUsersWorkout.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -403,8 +308,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         ));
         jScrollPaneUsersWorkout.setViewportView(jTableUsersWorkouts);
 
-        jPanelHomeUsers.add(jScrollPaneUsersWorkout);
-        jScrollPaneUsersWorkout.setBounds(380, 50, 230, 140);
+        jPanelHomeUsers.add(jScrollPaneUsersWorkout, java.awt.BorderLayout.CENTER);
 
         jButtonAddWorkout.setText("Add Workout");
         jButtonAddWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -413,8 +317,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonAddWorkoutActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonAddWorkout);
-        jButtonAddWorkout.setBounds(380, 200, 40, 20);
+        jPanelHomeUsers.add(jButtonAddWorkout, java.awt.BorderLayout.CENTER);
 
         jButtonChangeWorkout.setText("Change Workout");
         jButtonChangeWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -423,8 +326,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonChangeWorkoutActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonChangeWorkout);
-        jButtonChangeWorkout.setBounds(440, 220, 60, 20);
+        jPanelHomeUsers.add(jButtonChangeWorkout, java.awt.BorderLayout.CENTER);
 
         jButtonDeleteWorkout.setText("Delete Workout");
         jButtonDeleteWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -433,12 +335,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonDeleteWorkoutActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonDeleteWorkout);
-        jButtonDeleteWorkout.setBounds(520, 210, 60, 20);
+        jPanelHomeUsers.add(jButtonDeleteWorkout, java.awt.BorderLayout.CENTER);
 
         jLabelUsersExercicis.setText("User exercice");
-        jPanelHomeUsers.add(jLabelUsersExercicis);
-        jLabelUsersExercicis.setBounds(690, 20, 240, 16);
+        jPanelHomeUsers.add(jLabelUsersExercicis, java.awt.BorderLayout.CENTER);
 
         jScrollPaneUsersExercicis.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -455,8 +355,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         ));
         jScrollPaneUsersExercicis.setViewportView(jTableUsersExercicis);
 
-        jPanelHomeUsers.add(jScrollPaneUsersExercicis);
-        jScrollPaneUsersExercicis.setBounds(680, 20, 180, 200);
+        jPanelHomeUsers.add(jScrollPaneUsersExercicis, java.awt.BorderLayout.CENTER);
 
         jButtonAddExercice.setText("Add exercice");
         jButtonAddExercice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -465,8 +364,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonAddExerciceActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonAddExercice);
-        jButtonAddExercice.setBounds(670, 260, 50, 20);
+        jPanelHomeUsers.add(jButtonAddExercice, java.awt.BorderLayout.CENTER);
 
         jButtonChangeExercice.setText("Change exercice");
         jButtonChangeExercice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -475,8 +373,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonChangeExerciceActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonChangeExercice);
-        jButtonChangeExercice.setBounds(720, 260, 50, 20);
+        jPanelHomeUsers.add(jButtonChangeExercice, java.awt.BorderLayout.CENTER);
 
         jButtonDeleteExercice.setText("Delete exercice");
         jButtonDeleteExercice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -485,68 +382,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonDeleteExerciceActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonDeleteExercice);
-        jButtonDeleteExercice.setBounds(770, 230, 70, 20);
-
-        jLabelAllWorkouts.setText("All Workouts");
-        jPanelHomeUsers.add(jLabelAllWorkouts);
-        jLabelAllWorkouts.setBounds(430, 290, 130, 16);
-
-        jScrollPaneAllWorkouts.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jTableAllWorkouts.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPaneAllWorkouts.setViewportView(jTableAllWorkouts);
-
-        jPanelHomeUsers.add(jScrollPaneAllWorkouts);
-        jScrollPaneAllWorkouts.setBounds(390, 310, 200, 130);
-
-        jButtonAddWorkoutToUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButtonAddWorkoutToUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddWorkoutToUserActionPerformed(evt);
-            }
-        });
-        jPanelHomeUsers.add(jButtonAddWorkoutToUser);
-        jButtonAddWorkoutToUser.setBounds(400, 480, 220, 4);
-
-        jLabelAllExercices.setText("All Exercices");
-        jPanelHomeUsers.add(jLabelAllExercices);
-        jLabelAllExercices.setBounds(670, 300, 130, 16);
-
-        jTableAllExercices.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPaneAllExercices.setViewportView(jTableAllExercices);
-
-        jPanelHomeUsers.add(jScrollPaneAllExercices);
-        jScrollPaneAllExercices.setBounds(670, 320, 170, 110);
-
-        jButtonAddExerciceToWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButtonAddExerciceToWorkout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddExerciceToWorkoutActionPerformed(evt);
-            }
-        });
-        jPanelHomeUsers.add(jButtonAddExerciceToWorkout);
-        jButtonAddExerciceToWorkout.setBounds(660, 480, 170, 4);
+        jPanelHomeUsers.add(jButtonDeleteExercice, java.awt.BorderLayout.CENTER);
 
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -555,8 +391,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonRefreshActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonRefresh);
-        jButtonRefresh.setBounds(1040, 10, 48, 20);
+        jPanelHomeUsers.add(jButtonRefresh, java.awt.BorderLayout.CENTER);
 
         add(jPanelHomeUsers, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -621,21 +456,11 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         main.UnderDevelopment();
     }//GEN-LAST:event_jButtonChangeWorkoutActionPerformed
 
-    private void jButtonAddExerciceToWorkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddExerciceToWorkoutActionPerformed
-        main.UnderDevelopment();
-    }//GEN-LAST:event_jButtonAddExerciceToWorkoutActionPerformed
-
-    private void jButtonAddWorkoutToUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddWorkoutToUserActionPerformed
-        main.UnderDevelopment();
-    }//GEN-LAST:event_jButtonAddWorkoutToUserActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddExercice;
-    private javax.swing.JButton jButtonAddExerciceToWorkout;
     private javax.swing.JButton jButtonAddUser;
     private javax.swing.JButton jButtonAddWorkout;
-    private javax.swing.JButton jButtonAddWorkoutToUser;
     private javax.swing.JButton jButtonChangeExercice;
     private javax.swing.JButton jButtonChangeUser;
     private javax.swing.JButton jButtonChangeWorkout;
@@ -643,20 +468,111 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     private javax.swing.JButton jButtonDeleteUser;
     private javax.swing.JButton jButtonDeleteWorkout;
     private javax.swing.JButton jButtonRefresh;
-    private javax.swing.JLabel jLabelAllExercices;
-    private javax.swing.JLabel jLabelAllWorkouts;
     private javax.swing.JLabel jLabelUserList;
     private javax.swing.JLabel jLabelUsersExercicis;
     private javax.swing.JLabel jLabelUsersWorkouts;
     private javax.swing.JPanel jPanelHomeUsers;
-    private javax.swing.JScrollPane jScrollPaneAllExercices;
-    private javax.swing.JScrollPane jScrollPaneAllWorkouts;
     private javax.swing.JScrollPane jScrollPaneUsersExercicis;
     private javax.swing.JScrollPane jScrollPaneUsersList;
     private javax.swing.JScrollPane jScrollPaneUsersWorkout;
-    private javax.swing.JTable jTableAllExercices;
-    private javax.swing.JTable jTableAllWorkouts;
     private javax.swing.JTable jTableUsersExercicis;
     private javax.swing.JTable jTableUsersWorkouts;
     // End of variables declaration//GEN-END:variables
+
+    private void InicializejPanels() {
+//        jPanelHomeUsers.setBounds(0, 0, 900, 600);
+//        jLabelUserList.setBounds(10, 10, 150, 30);
+//        jScrollPaneUsersList.setBounds(10, 40, 150, 510);
+//        jListUsuaris.setBounds(10, 10, 130, 495);
+//        jButtonAddUser.setBounds(10, 555, 50, 30);
+//        jButtonChangeUser.setBounds(60, 555, 50, 30);
+//        jButtonDeleteUser.setBounds(110, 555, 50, 30);
+//
+//        jLabelUsersWorkouts.setBounds(170, 10, 370, 30);
+//        jScrollPaneUsersWorkout.setBounds(170, 40, 350, 210);
+//        jTableUsersWorkouts.setBounds(5, 5, 350, 195);//
+//        jButtonAddWorkout.setBounds(170, 256, 119, 30);
+//        jButtonChangeWorkout.setBounds(284, 256, 119, 30);
+//        jButtonDeleteWorkout.setBounds(404, 256, 117, 30);
+//
+//        jLabelUsersExercicis.setBounds(525, 10, 370, 30);
+//        jScrollPaneUsersExercicis.setBounds(525, 40, 365, 210);
+//        jTableUsersExercicis.setBounds(5, 5, 355, 180);//
+//        jButtonAddExercice.setBounds(525, 256, 120, 30);
+//        jButtonChangeExercice.setBounds(645, 256, 120, 30);
+//        jButtonDeleteExercice.setBounds(765, 256, 125, 30);
+//
+//        jButtonRefresh.setBounds(828, 1, 70, 30);
+        jPanelHomeUsers.setLayout(new MigLayout(
+                "wrap 10, fill",
+                "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5",
+                "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5"
+        ));
+        this.add(jPanelHomeUsers, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jLabelUserList, "cell 0 0, span 3");
+        jPanelHomeUsers.add(jScrollPaneUsersList, "cell 0 1, span 3 8");
+        jPanelHomeUsers.add(jButtonAddUser, "cell 0 10");
+        jPanelHomeUsers.add(jButtonChangeUser, "cell 1 10");
+        jPanelHomeUsers.add(jButtonDeleteUser, "cell 2 10");
+
+        jPanelHomeUsers.add(jLabelUsersWorkouts, "cell 4 0, span 6");
+        jPanelHomeUsers.add(jScrollPaneUsersWorkout, "cell 4 1, span 7 2");
+        jPanelHomeUsers.add(jButtonAddWorkout, "cell 4 4, span 2");
+        jPanelHomeUsers.add(jButtonChangeWorkout, "cell 6 4, span 2");
+        jPanelHomeUsers.add(jButtonDeleteWorkout, "cell 8 4, span 3");
+
+        jPanelHomeUsers.add(jLabelUsersExercicis, "cell 4 6, span 6");
+        jPanelHomeUsers.add(jScrollPaneUsersExercicis, "cell 4 7, span 7 2");
+        jPanelHomeUsers.add(jButtonAddExercice, "cell 4 10, span 2");
+        jPanelHomeUsers.add(jButtonChangeExercice, "cell 6 10, span 2");
+        jPanelHomeUsers.add(jButtonDeleteExercice, "cell 8 10, span 3");
+
+        jPanelHomeUsers.add(jButtonRefresh, "cell 10 0");
+//
+//        jPanelHomeUsers.add(jScrollPaneUsersList, "span 3 4");
+        jScrollPaneUsersList.setViewportView(jListUsuaris);
+//        jPanelHomeUsers.add(jButtonAddUser, "dock south");
+//        jPanelHomeUsers.add(jButtonChangeUser, "dock south");
+//        jPanelHomeUsers.add(jButtonDeleteUser, "dock south");
+//
+//        
+//        jPanelHomeUsers.add(jScrollPaneUsersWorkout, "span 5 2");
+//        jScrollPaneUsersWorkout.setViewportView(jTableUsersWorkouts);
+//        jPanelHomeUsers.add(jButtonAddWorkout);
+//        jPanelHomeUsers.add(jButtonChangeWorkout);
+//        jPanelHomeUsers.add(jButtonDeleteWorkout);
+//
+//        jPanelHomeUsers.add(jLabelUsersExercicis);
+//        jPanelHomeUsers.add(jScrollPaneUsersExercicis);
+//        jScrollPaneUsersExercicis.setViewportView(jTableUsersExercicis);
+//        jPanelHomeUsers.add(jButtonAddExercice);
+//        jPanelHomeUsers.add(jButtonChangeExercice);
+//        jPanelHomeUsers.add(jButtonDeleteExercice);
+    }
+
+    private void InicialiceColors() {
+        jPanelHomeUsers.setBackground(Color.white); // Cambiar el color de fondo
+        List<AbstractButton> butons = new ArrayList<>();
+        butons.add(jButtonAddUser);
+        butons.add(jButtonChangeUser);
+        butons.add(jButtonDeleteUser);
+        butons.add(jButtonAddWorkout);
+        butons.add(jButtonChangeWorkout);
+        butons.add(jButtonDeleteWorkout);
+        butons.add(jButtonAddExercice);
+        butons.add(jButtonChangeExercice);
+        butons.add(jButtonDeleteExercice);
+        butons.add(jButtonRefresh);
+
+        for (AbstractButton buton : butons) {
+            buton.setBackground(Color.decode("#D98888")); // Cambiar el color de fondo
+            buton.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
+            buton.setFont(jButtonAddUser.getFont().deriveFont(Font.BOLD, 14f));
+            buton.setBorder(BorderFactory.createLineBorder(new Color(80, 0, 20), 2));
+        }
+    }
+
+    private void inicialiceImages() {
+
+    }
 }
