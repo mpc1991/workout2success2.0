@@ -182,7 +182,7 @@ public class JPanelHome extends javax.swing.JPanel {
         jPanelOptions.add(jButtonShowMyUsers);
 
         jButtonOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gear-outlined-symbol_icon-icons.com_73242.png"))); // NOI18N
-        jButtonOptions.setText("Options");
+        jButtonOptions.setText("Settings");
         jButtonOptions.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
         jButtonOptions.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
