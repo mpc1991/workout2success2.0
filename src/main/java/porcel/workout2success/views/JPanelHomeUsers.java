@@ -49,6 +49,8 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         InicializejPanels();
         InicialiceColors();
         inicialiceImages();
+        
+        addPanelOptionsResizeListener();
         refresh();
     }
 
@@ -89,15 +91,14 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     // Metodo para obtener la lista de usuarios del instructor que ha iniciado sesión en la aplicación.
     public void getListMyUsers() {
-        jScrollPaneUsersList.setViewportView(jPaneUsersList);
         jPaneUsersList.setLayout(new MigLayout(
                 "wrap 2, fill",
                 "5[grow, fill]5[grow, fill]5",
                 "5[grow]5"
         ));
-        
+
         jPaneUsersList.removeAll();
-        
+
         UsuariDAO usuariDAO = new UsuariDAOImpl();
         try {
             var usuaris = usuariDAO.getMyUsers(sessionUsername);
@@ -106,6 +107,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             for (Usuari u : usuaris) {
                 JButton userButton = new JButton(u.getNom());
                 userButton.setActionCommand(String.valueOf(u.getId()));
+                //userButton.setBackground(Color.decode("#D98888")); // Cambiar el color de fondo
+                //userButton.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
+                userButton.setFont(jButtonAddUser.getFont().deriveFont(Font.BOLD, 14f));
+//                userButton.setBorder(BorderFactory.createLineBorder(new Color(80, 0, 20), 1));
 
                 // Estilo por defecto
                 buttonRenderer.styleButton(userButton, false);
@@ -124,6 +129,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
             jPaneUsersList.revalidate();
             jPaneUsersList.repaint();
+            jScrollPaneUsersList.revalidate();
+            jScrollPaneUsersList.repaint();
+
+            jScrollPaneUsersList.setViewportView(jPaneUsersList);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -245,9 +254,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void jListUsuarisValueChanged(javax.swing.event.ListSelectionEvent evt) {
         Usuari selectedUser = jListUsuaris.getSelectedValue();
-        // Primer intento de cambiar el background de color
-        //jListUsuaris.setSelectionBackground(Color.decode("#800020")); // Cambia el fondo del elemento seleccionado
-        //jListUsuaris.setSelectionForeground(Color.WHITE); // Cambia el color del texto en la selección
 
         if (selectedUser != null) {
             int userId = selectedUser.getId();
@@ -301,7 +307,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jLabelUserList.setText("My users");
         jPanelHomeUsers.add(jLabelUserList, java.awt.BorderLayout.CENTER);
 
-        jScrollPaneUsersList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPaneUsersList.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
         jScrollPaneUsersList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jScrollPaneUsersListMouseEntered(evt);
@@ -336,6 +342,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jLabelUsersWorkouts.setText("User workouts");
         jPanelHomeUsers.add(jLabelUsersWorkouts, java.awt.BorderLayout.CENTER);
 
+        jScrollPaneUsersWorkout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
         jScrollPaneUsersWorkout.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTableUsersWorkouts.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -384,6 +391,8 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jLabelUsersExercicis.setText("User exercice");
         jPanelHomeUsers.add(jLabelUsersExercicis, java.awt.BorderLayout.CENTER);
 
+        jScrollPaneUsersExercicis.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPaneUsersExercicis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
         jScrollPaneUsersExercicis.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTableUsersExercicis.setModel(new javax.swing.table.DefaultTableModel(
@@ -578,7 +587,19 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             buton.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
             buton.setFont(jButtonAddUser.getFont().deriveFont(Font.BOLD, 14f));
             buton.setBorder(BorderFactory.createLineBorder(new Color(80, 0, 20), 2));
+            
+            buton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buton.setBackground(Color.decode("#800020"));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buton.setBackground(Color.decode("#D98888"));
+            }
+        });
         }
+
+        jPaneUsersList.setBackground(Color.white);
+        jTableUsersExercicis.setBackground(Color.white);
     }
 
     private void inicialiceImages() {
@@ -742,5 +763,25 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             });
         }
     }
-
+    
+    private void addPanelOptionsResizeListener() {
+        jPaneUsersList.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                MigLayout layout = (MigLayout) jPaneUsersList.getLayout();
+                if (jScrollPaneUsersList.getWidth() < 286) {
+                    // Configurar restricciones globales
+                    layout.setLayoutConstraints("wrap 1, fill");
+                    layout.setColumnConstraints("5[grow, fill]5");
+                    layout.setRowConstraints("5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5");
+                } else {
+                    layout.setLayoutConstraints("wrap 2, fill");
+                    layout.setColumnConstraints("5[grow, fill]5[grow, fill]5");
+                    layout.setRowConstraints("5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5");
+                }
+                jPaneUsersList.revalidate();
+                jPaneUsersList.repaint();
+            }
+        });
+    }
 }

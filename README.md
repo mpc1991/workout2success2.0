@@ -1,4 +1,4 @@
-# workout2success2.0
+# workout2success v2.0
 #### Macià Porcel Cifre -- DI04
 ###
 > [!NOTE]
@@ -13,6 +13,12 @@
 #####  * jPanelHomeUsers --> ahora usa Miglayout para representar todos sus elementos
 #####  * jPanelHomeUsers --> Cambiado look & feel
 #####  * jPanelHomeUsers --> Ahora usa MigLyout para mostrar la lista de usuarios usando botones en vez de una lista plana
+#####  * jPanelHomeUsers --> Ahora la lista de usuarios cambia de color al realizar mouseEntered & mouseExited y al pulsarla
+#####  * jPanelHomeUsers --> Ahora los botones cambian de color al realizar mouseEntered & mouseExited
+#####  * jPanelHomeUsers --> Cuando se hace pequeño "jScrollPaneUsersList" a través del SplitPane, los iconos se colocan en una única fila y viceversa
+
+> [!NOTE]
+> Arreglos referentes a la v1
 
 > [!NOTE]
 > Páginas consultadas
