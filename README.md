@@ -15,7 +15,8 @@
 #####  * jPanelHomeUsers --> Ahora usa MigLyout para mostrar la lista de usuarios usando botones en vez de una lista plana
 #####  * jPanelHomeUsers --> Ahora la lista de usuarios cambia de color al realizar mouseEntered & mouseExited y al pulsarla
 #####  * jPanelHomeUsers --> Ahora los botones cambian de color al realizar mouseEntered & mouseExited
-#####  * jPanelHomeUsers --> Cuando se hace pequeño "jScrollPaneUsersList" a través del SplitPane, los iconos se colocan en una única fila y viceversa
+#####  
+#####  * jPanelCalendar --> Se ha traspasado el calendario de la UD03, accesible desde jPanelHome --> jPanelOptions --> jButtonCalendar
 
 > [!NOTE]
 > Arreglos referentes a la v1
@@ -24,4 +25,4 @@
 > Páginas consultadas
 ##### http://www.miglayout.com/QuickStart.pdf
 ##### https://doc.formdev.com/miglayout-swing/net/miginfocom/swing/MigLayout.html
-<a href="https://www.flaticon.com/free-icons/routine" title="routine icons">Routine icons created by Handicon - Flaticon</a>
+##### https://icon-icons.com/es/pack/BigMug-Line-icons/935

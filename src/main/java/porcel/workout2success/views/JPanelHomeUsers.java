@@ -2,6 +2,7 @@ package porcel.workout2success.views;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,7 +34,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     private JPanelHome jPanelHome;
     private Main main;
-
+    
     String sessionUsername = Main.getUsername();
 
     private javax.swing.JList<Usuari> jListUsuaris;
@@ -42,15 +43,17 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         initComponents();
         this.jPanelHome = jPanelHome;
         this.main = main;
-
-        setSize(900, 600);
+        
+        //setSize(900, 600);
+        //setPreferredSize(new Dimension(900, 600));
+        
 
         inicializeTables();
         InicializejPanels();
         InicialiceColors();
         inicialiceImages();
         
-        addPanelOptionsResizeListener();
+        //addPanelOptionsResizeListener(); No termina de funcionar, pdte revisar
         refresh();
     }
 
@@ -92,9 +95,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     // Metodo para obtener la lista de usuarios del instructor que ha iniciado sesión en la aplicación.
     public void getListMyUsers() {
         jPaneUsersList.setLayout(new MigLayout(
-                "wrap 2, fill",
-                "5[grow, fill]5[grow, fill]5",
-                "5[grow]5"
+                "wrap 1, fill",
+                "5[grow, fill]5",
+                "5[grow, fill]5"
         ));
 
         jPaneUsersList.removeAll();
@@ -107,10 +110,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             for (Usuari u : usuaris) {
                 JButton userButton = new JButton(u.getNom());
                 userButton.setActionCommand(String.valueOf(u.getId()));
-                //userButton.setBackground(Color.decode("#D98888")); // Cambiar el color de fondo
-                //userButton.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
                 userButton.setFont(jButtonAddUser.getFont().deriveFont(Font.BOLD, 14f));
-//                userButton.setBorder(BorderFactory.createLineBorder(new Color(80, 0, 20), 1));
 
                 // Estilo por defecto
                 buttonRenderer.styleButton(userButton, false);
@@ -298,14 +298,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jButtonDeleteExercice = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setLayout(new java.awt.BorderLayout());
 
-        jPanelHomeUsers.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelHomeUsers.setLayout(new java.awt.BorderLayout());
-
         jLabelUserList.setText("My users");
-        jPanelHomeUsers.add(jLabelUserList, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jLabelUserList);
 
         jScrollPaneUsersList.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
         jScrollPaneUsersList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,7 +311,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         });
         jScrollPaneUsersList.setViewportView(jPaneUsersList);
 
-        jPanelHomeUsers.add(jScrollPaneUsersList, java.awt.BorderLayout.PAGE_START);
+        jPanelHomeUsers.add(jScrollPaneUsersList);
 
         jButtonAddUser.setText("Add");
         jButtonAddUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -324,7 +320,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonAddUserActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonAddUser, java.awt.BorderLayout.PAGE_END);
+        jPanelHomeUsers.add(jButtonAddUser);
 
         jButtonChangeUser.setText("Change");
         jButtonChangeUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -333,14 +329,14 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonChangeUserActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonChangeUser, java.awt.BorderLayout.LINE_END);
+        jPanelHomeUsers.add(jButtonChangeUser);
 
         jButtonDeleteUser.setText("Delete");
         jButtonDeleteUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelHomeUsers.add(jButtonDeleteUser, java.awt.BorderLayout.LINE_START);
+        jPanelHomeUsers.add(jButtonDeleteUser);
 
         jLabelUsersWorkouts.setText("User workouts");
-        jPanelHomeUsers.add(jLabelUsersWorkouts, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jLabelUsersWorkouts);
 
         jScrollPaneUsersWorkout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
         jScrollPaneUsersWorkout.setViewportBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -359,7 +355,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         ));
         jScrollPaneUsersWorkout.setViewportView(jTableUsersWorkouts);
 
-        jPanelHomeUsers.add(jScrollPaneUsersWorkout, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jScrollPaneUsersWorkout);
 
         jButtonAddWorkout.setText("Add Workout");
         jButtonAddWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -368,7 +364,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonAddWorkoutActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonAddWorkout, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonAddWorkout);
 
         jButtonChangeWorkout.setText("Change Workout");
         jButtonChangeWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -377,7 +373,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonChangeWorkoutActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonChangeWorkout, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonChangeWorkout);
 
         jButtonDeleteWorkout.setText("Delete Workout");
         jButtonDeleteWorkout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -386,10 +382,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonDeleteWorkoutActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonDeleteWorkout, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonDeleteWorkout);
 
         jLabelUsersExercicis.setText("User exercice");
-        jPanelHomeUsers.add(jLabelUsersExercicis, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jLabelUsersExercicis);
 
         jScrollPaneUsersExercicis.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPaneUsersExercicis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 2, true));
@@ -408,7 +404,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         ));
         jScrollPaneUsersExercicis.setViewportView(jTableUsersExercicis);
 
-        jPanelHomeUsers.add(jScrollPaneUsersExercicis, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jScrollPaneUsersExercicis);
 
         jButtonAddExercice.setText("Add exercice");
         jButtonAddExercice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -417,7 +413,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonAddExerciceActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonAddExercice, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonAddExercice);
 
         jButtonChangeExercice.setText("Change exercice");
         jButtonChangeExercice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -426,7 +422,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonChangeExerciceActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonChangeExercice, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonChangeExercice);
 
         jButtonDeleteExercice.setText("Delete exercice");
         jButtonDeleteExercice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -435,7 +431,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonDeleteExerciceActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonDeleteExercice, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonDeleteExercice);
 
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -444,7 +440,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 jButtonRefreshActionPerformed(evt);
             }
         });
-        jPanelHomeUsers.add(jButtonRefresh, java.awt.BorderLayout.CENTER);
+        jPanelHomeUsers.add(jButtonRefresh);
 
         add(jPanelHomeUsers, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -606,7 +602,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     }
 
-    // Los tres siguientes métodos están adaptados con MUCHA ayuda de chatGPT pero necesitaba que esto existiese.
+    // Los siguientes métodos están adaptados con MUCHA ayuda de chatGPT pero necesitaba que esto existiese para el look & feel.
     public class CustomListRenderer extends DefaultListCellRenderer {
 
         private int hoverIndex = -1;
