@@ -2,6 +2,7 @@ package porcel.workout2success.views;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -25,7 +26,7 @@ public class JPanelCalendar extends JPanel {
 
     private int year;
     private int month;
-    private Color color = Color.red;
+    private Color color = Color.decode("#800020");
     private int startY;
     private JComboBox<String> monthComboBox;
     private JSpinner yearSpinner;
@@ -108,11 +109,13 @@ public class JPanelCalendar extends JPanel {
             //Si el día tiene un workout, cambiamos el color del botón y le añadimos el tooltip
             if (workoutDates.contains(currentDate)) {
                 dayButton.setBackground(color);
+                dayButton.setForeground(Color.white);
+                dayButton.setFont(dayButton.getFont().deriveFont(Font.BOLD, 14f));
 
                 int workoutCount = Collections.frequency(workoutDates, currentDate);
                 dayButton.setToolTipText(workoutCount + " entrenamiento(s) para este día");
             } else {
-                dayButton.setBackground(Color.LIGHT_GRAY);
+                dayButton.setBackground(Color.white);
             }
             
             ActionListener hasWorkoutsListener = new ActionListener() {

@@ -1,8 +1,15 @@
 // Macia Porcel Cifre
 package porcel.workout2success;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import porcel.workout2success.views.JDialogConnectionStatus;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import porcel.workout2success.data.DataAccess;
+import porcel.workout2success.data.UsuariDAO;
+import porcel.workout2success.data.UsuariDAOImpl;
+import porcel.workout2success.dto.Usuari;
 import porcel.workout2success.views.JDialogHomeUsersAdd;
 import porcel.workout2success.views.JDialogHomeUsersExerciciAdd;
 import porcel.workout2success.views.JDialogHomeUsersWorkoutsAdd;
@@ -126,10 +133,44 @@ public class Main extends javax.swing.JFrame {
         setPassword(password);
 
         JDialogConnectionStatus jDialogConnectionStatus;
-        jDialogConnectionStatus = new JDialogConnectionStatus(this, true, sessionUsername, sessionPassword);
-
-        jDialogConnectionStatus.setLocationRelativeTo(this); // Lo centramos en mitad de la pantalla
-        jDialogConnectionStatus.setVisible(true);
+        //jDialogConnectionStatus = new JDialogConnectionStatus(this, true, sessionUsername, sessionPassword);
+        //jDialogConnectionStatus.setLocationRelativeTo(this); // Lo centramos en mitad de la pantalla
+        //jDialogConnectionStatus.setVisible(true);
+        
+        try {
+            Connection conn = DataAccess.getConnection();
+            if (conn != null) {
+                //jLabelConnectionResult.setText("Connection successfully to the database");
+                UsuariDAO employeeDAO = new UsuariDAOImpl();
+                try {
+                    Usuari usuari = employeeDAO.get(username);
+                    String dbHashedPassword = usuari.getPasswordHash();
+                    var result = BCrypt.verifyer().verify(password.toCharArray(), dbHashedPassword);
+                    if (result.verified) {
+                        if (usuari.isInstructor()) {
+                            //jLabelConnectionResult.setText("Login verifyed: welcome " + usuari.getNom());
+                            //mainFrame.showHomePanel();
+                            showHomePanel();
+                        } else {
+                            //jLabelConnectionResult.setText("This function is only for Instructors");
+                            jPanelLogin.setJLabelLoginInfo("This function is only for Instructors");
+                        }
+                    } else {
+                        //jLabelConnectionResult.setText("Error02: Incorrect username or password.");
+                        jPanelLogin.setJLabelLoginInfo("Error02: Incorrect username or password.");
+                    }
+                } catch (Exception e) {
+                    //jLabelConnectionResult.setText("Error01: Incorrect username or password.");
+                    jPanelLogin.setJLabelLoginInfo("Error01: Incorrect username or password.");
+                }
+            } else {
+                //jLabelConnectionResult.setText("Error: Can not access to the database.");
+                jPanelLogin.setJLabelLoginInfo("Error: Can not access to the database.");
+            }
+        } catch (SQLException ex) {
+            //jLabelConnectionResult.setText("Error: " + ex.getMessage());
+            jPanelLogin.setJLabelLoginInfo("Error: " + ex.getMessage());
+        }
     }
 
     public void showAddUsersDialog() {

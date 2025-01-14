@@ -219,7 +219,7 @@ public class JPanelHome extends javax.swing.JPanel {
 //        }
 //
 //        jPanelCalendar = new JPanelCalendar(this, jFrameMain);
-        jPanelCalendar.setColor(Color.RED);
+        //jPanelCalendar.setColor(Color.RED);
 
         //jPanelShowInfo.add(jPanelCalendar);
 //

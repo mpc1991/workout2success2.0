@@ -29,6 +29,8 @@ public class JPanelLogin extends javax.swing.JPanel {
         jPasswordFieldPassword.setBounds(130, 390, 220, 40);
         jButtonLogin.setBounds(10, 450, 170, 40);
         jButtonRegister.setBounds(180, 450, 170, 40);
+        jLabelLoginInfo.setBounds(10, 530, 300, 40);
+        jButtonResetPassword.setBounds(10, 490, 340, 20);
 
         jPanelLogin.add(jPanelBanner);
         jPanelBanner.add(jLabelBanner);
@@ -46,6 +48,10 @@ public class JPanelLogin extends javax.swing.JPanel {
         jPanelCredentials.add(jPasswordFieldPassword);
         jPanelCredentials.add(jButtonLogin);
         jPanelCredentials.add(jButtonRegister);
+        jPanelCredentials.add(jLabelLoginInfo);
+        jPanelCredentials.add(jButtonResetPassword);
+        
+        
     }
 
     public void centerComponents(JPanel parentPanel, JComponent childComponent) { //Método sacado con ayuda de chatGPT por la necesidad de querer centrar la imagen.
@@ -73,6 +79,8 @@ public class JPanelLogin extends javax.swing.JPanel {
         jButtonLogin = new javax.swing.JButton();
         jButtonRegister = new javax.swing.JButton();
         jPasswordFieldPassword = new javax.swing.JPasswordField();
+        jLabelLoginInfo = new javax.swing.JLabel();
+        jButtonResetPassword = new javax.swing.JButton();
         jPanelBanner = new javax.swing.JPanel();
         jPanelWelcomeMessage = new javax.swing.JPanel();
         jLabelLine1 = new javax.swing.JLabel();
@@ -143,6 +151,12 @@ public class JPanelLogin extends javax.swing.JPanel {
         });
         jPanelCredentials.add(jPasswordFieldPassword);
         jPasswordFieldPassword.setBounds(120, 440, 240, 40);
+        jPanelCredentials.add(jLabelLoginInfo);
+        jLabelLoginInfo.setBounds(350, 440, 0, 0);
+
+        jButtonResetPassword.setText("Reset password");
+        jPanelCredentials.add(jButtonResetPassword);
+        jButtonResetPassword.setBounds(340, 320, 111, 23);
 
         jPanelLogin.add(jPanelCredentials);
         jPanelCredentials.setBounds(850, -20, 420, 520);
@@ -205,11 +219,14 @@ public class JPanelLogin extends javax.swing.JPanel {
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
 
     }//GEN-LAST:event_jButtonRegisterActionPerformed
-
+    public void setJLabelLoginInfo(String text) {
+        jLabelLoginInfo.setText(text);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonRegister;
+    private javax.swing.JButton jButtonResetPassword;
     private javax.swing.JLabel jLabelBanner;
     private javax.swing.JLabel jLabelInsertPassword;
     private javax.swing.JLabel jLabelInsertUsername;
@@ -218,6 +235,7 @@ public class JPanelLogin extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelLine3;
     private javax.swing.JLabel jLabelLine4;
     private javax.swing.JLabel jLabelLine5;
+    private javax.swing.JLabel jLabelLoginInfo;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JPanel jPanelBanner;
     private javax.swing.JPanel jPanelCredentials;

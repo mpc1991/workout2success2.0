@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import javax.swing.JTextField;
 import porcel.workout2success.Main;
 import porcel.workout2success.data.DataAccess;
-import porcel.workout2success.dto.UsuariDAOImpl;
+import porcel.workout2success.data.UsuariDAOImpl;
 import porcel.workout2success.dto.Usuari;
-import porcel.workout2success.dto.UsuariDAO;
+import porcel.workout2success.data.UsuariDAO;
 
 public class JDialogConnectionStatus extends javax.swing.JDialog {
 

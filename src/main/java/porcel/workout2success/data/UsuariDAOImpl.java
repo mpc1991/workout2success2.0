@@ -1,5 +1,6 @@
-package porcel.workout2success.dto;
+package porcel.workout2success.data;
 
+import porcel.workout2success.data.UsuariDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import porcel.workout2success.data.DataAccess;
+import porcel.workout2success.dto.Usuari;
 
 public class UsuariDAOImpl implements UsuariDAO {
 

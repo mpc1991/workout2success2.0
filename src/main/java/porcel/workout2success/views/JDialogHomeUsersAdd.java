@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import porcel.workout2success.Main;
 import porcel.workout2success.dto.Usuari;
-import porcel.workout2success.dto.UsuariDAO;
-import porcel.workout2success.dto.UsuariDAOImpl;
+import porcel.workout2success.data.UsuariDAO;
+import porcel.workout2success.data.UsuariDAOImpl;
 
 public class JDialogHomeUsersAdd extends javax.swing.JDialog {
 

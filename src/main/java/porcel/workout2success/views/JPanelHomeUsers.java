@@ -21,14 +21,14 @@ import javax.swing.table.DefaultTableModel;
 import net.miginfocom.swing.MigLayout;
 import porcel.workout2success.Main;
 import porcel.workout2success.dto.Exercici;
-import porcel.workout2success.dto.ExerciciDAO;
-import porcel.workout2success.dto.ExerciciDAOImpl;
-import porcel.workout2success.dto.UsuariDAOImpl;
+import porcel.workout2success.data.ExerciciDAO;
+import porcel.workout2success.data.ExerciciDAOImpl;
+import porcel.workout2success.data.UsuariDAOImpl;
 import porcel.workout2success.dto.Usuari;
-import porcel.workout2success.dto.UsuariDAO;
+import porcel.workout2success.data.UsuariDAO;
 import porcel.workout2success.dto.Workout;
-import porcel.workout2success.dto.WorkoutDAO;
-import porcel.workout2success.dto.WorkoutDAOImpl;
+import porcel.workout2success.data.WorkoutDAO;
+import porcel.workout2success.data.WorkoutDAOImpl;
 
 public class JPanelHomeUsers extends javax.swing.JPanel {
 

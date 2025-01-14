@@ -8,11 +8,11 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import porcel.workout2success.Main;
 import porcel.workout2success.dto.Usuari;
-import porcel.workout2success.dto.UsuariDAO;
-import porcel.workout2success.dto.UsuariDAOImpl;
+import porcel.workout2success.data.UsuariDAO;
+import porcel.workout2success.data.UsuariDAOImpl;
 import porcel.workout2success.dto.Workout;
-import porcel.workout2success.dto.WorkoutDAO;
-import porcel.workout2success.dto.WorkoutDAOImpl;
+import porcel.workout2success.data.WorkoutDAO;
+import porcel.workout2success.data.WorkoutDAOImpl;
 
 public class JDialogHomeUsersWorkoutsAdd extends javax.swing.JDialog {
 

@@ -51,6 +51,11 @@
 
 > [!NOTE]
 > Arreglos referentes a la v1
+#####  * Movida la estructura DAO a data.
+#####  * Modificada la estructura del Readme.
+#####  * El jDialog redundante en el inicio de sesión se ha suprimido
+#####  * Añadido mensaje de error de login en jPanelLogin
+#####  * Añadido botón de restablecer contraseña en jPanelLogin para evitar un GAP (sin funcionalidad actualmente)
 
 > [!NOTE]
 > Páginas consultadas
@@ -64,16 +69,55 @@
 #####  * Los botones "Create" para confirmar la creación debe cambiarse a icono de V y X y de color. (Metafora)
 #####  * Los botones "Create" para confirmar la creación debe cambiarse de color. (affordance)
 #####  * El icono de refresh debe cambiarse por una flecha giratoria (Metafora)
-#####  * El jDialog redundante en el loggin debe quitarse
 #####  * El logout debería estar más en medio
 #####  * Revisar los refresh de las listas y tablas.
 #####  * Cuando se crea un usuario parece que no se asigna correctamente al instructor que toca y se asigna todo a Otero
-#####  * DAO va en data, Exercici.java va en dto
-#####  * Commits por cada funcionalidad
-#####  * Readme h1,h2
 #####  * Poder cambiar los colores desde settings
 #####  * Poder buscar un usuario por nombre --> busqueda, filtros, paginacion
 #####  * Tecla enter debe enviar el form
 #####  * Tabulacion debe pasar a la siguiente casilla
 #####  * Dark Pattern --> botón cancelar menos visible que el de aceptar.
 #####  * Regular expressions --> casilla correo
+
+> [!WARNING]
+> Criteris de qualificació
+#### Modificar el aspecto (look and feel) de las ventanas para hacerlas más atractivas y acorde con las tendencias actuales (p.ej. flat design, color scheme, etc.). 1p
+##### - Se ha modificado la estética de las pantallas:
+##### -- JPanelHome
+##### -- JPanelHomeUsers
+##### -- JPanelCalendar
+#####
+#### Añadir iconos y/o otros elementos visuales a los componentes para mejorar la usabilidad de la interfaz. 1p
+##### - Se han añadido metaforas a los botones de:
+##### -- JPanelHome
+#####
+#### Modificar la fuente y componentes utilizados para mostrar texto de forma que éste resulte legible e inteligible. 1p
+##### - Se han modificado las fuentes, tamaños y colores en:
+##### -- jPanelHome - Las letras de los botones están en blanco, negrita y tamaño 14
+##### -- jPanelHomeUsers - Las letras de los botones están en blanco, negrita y tamaño 14
+##### -- jPanelHomeUsers - Las letras de los workouts y exercices pasan a color blanco al seleccionarlos
+#####
+#### Distribuir y agrupar los componentes de una manera más organizada y atractiva para el usuario. 1p
+##### -- Se han eliminado elementos redundantes de jPanelHomeUsers
+##### -- Se han agrupado componentes usando botones y celdas más visibles evitando solapamiento de caracteres
+#####
+#### Redefinir los Layouts de los diferentes contenedores (JFrame, JDialog, …), Anchors (anclajes), Auto Resizing, Min and Max Size, etc. para que la usabilidad de la interfaz no se vea afectada en caso de redimensionamiento de las ventana principal. Utilizar MigLayout principalment. You can also use BorderLayout if needed. No null layout should be present in any container of the project now. 2p
+##### - Se han eliminado los Layout null de:
+##### -- jPanelHome
+##### -- jPanelHomeUsers
+##### - Se han organizado usando MigLayout los siguientes componentes:
+##### -- jPanelHome -> jPanelOptions
+##### -- jPanelHomeUsers
+##### -- jPanelHomeUsers -> jPaneUsersList
+##### -- jPanelHome -> jPanelOptions
+#####
+#### - Implementar la gestión de errores y excepciones necesaria, informando y dando feedback al usuario cuando sea necesario (no es necesario utilizar ninguna API de validación). 1p
+#### - Añadir más cambios a la interfaz que mejoren la usabilidad y documentarlos en el Readme.md del repositorio, justificando la solución adoptada, tanto a nivel de interfaz y componentes de la interfaz como a nivel de código. 3p
+#####
+#### - Clean code. Naming things. Project structure. Commits and github. Readme. 1p
+
+> [!NOTE]
+> Capturas del antes y el despues
+
+> [!NOTE]
+> Paleta de colores usada
