@@ -27,7 +27,7 @@ public class JPanelHome extends javax.swing.JPanel {
         jPanelUsers = new JPanelHomeUsers(this, jFrameMain);
         jPanelCalendar = new JPanelCalendar(this, jFrameMain);
 
-        this.setSize(1280, 720); //No es necesario al indicarselo desde main?
+        this.setSize(1280, 720);
         
         InicializejPanels();
         InicialiceColors();
@@ -37,7 +37,6 @@ public class JPanelHome extends javax.swing.JPanel {
 
     public void InicializejPanels() {
         jPanelOptions.setLayout(new MigLayout("wrap 2, fill", "5[fill]5[fill]5", "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5"));
-        //jPanelShowInfo.setLayout(new MigLayout("wrap 1, fill", "5[fill]5", "5[grow, fill]5"));
 
         jLabelQuestion.setHorizontalAlignment(JTextField.CENTER);
         jLabelUserSession.setHorizontalAlignment(JTextField.CENTER);
@@ -73,15 +72,15 @@ public class JPanelHome extends javax.swing.JPanel {
 
         jButtonShowMyUsers.setBackground(Color.decode("#800020")); // Cambiar el color de fondo
         jButtonShowMyUsers.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
-        jButtonShowMyUsers.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f));
+        jButtonShowMyUsers.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f)); // Negrita, tamaño 14
 
-        jButtonCalendar.setBackground(Color.decode("#D98888")); // Cambiar el color de fondo
-        jButtonCalendar.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
-        jButtonCalendar.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f)); // Negrita, tamaño 14
+        jButtonCalendar.setBackground(Color.decode("#D98888"));
+        jButtonCalendar.setForeground(Color.white);
+        jButtonCalendar.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f)); 
 
-        jButtonOptions.setBackground(Color.decode("#D98888")); // Cambiar el color de fondo
-        jButtonOptions.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
-        jButtonOptions.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f)); // Ne
+        jButtonOptions.setBackground(Color.decode("#D98888"));
+        jButtonOptions.setForeground(Color.white);
+        jButtonOptions.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f));
     }
 
     private void inicialiceImages() {
@@ -213,17 +212,6 @@ public class JPanelHome extends javax.swing.JPanel {
 
     private void jButtonCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalendarActionPerformed
         jPanelUsers.setVisible(false);
-
-//        if (jPanelCalendar != null) {
-//            this.remove(jPanelCalendar); // Eliminar del JFrame
-//        }
-//
-//        jPanelCalendar = new JPanelCalendar(this, jFrameMain);
-        //jPanelCalendar.setColor(Color.RED);
-
-        //jPanelShowInfo.add(jPanelCalendar);
-//
-//        jPanelCalendar.initializeCalendar();
         jPanelCalendar.setListeners(new MyCalendarListeners() {
             @Override
             public void hasWorkoutListener(hasWorkoutsEventArgs eventArg) {
@@ -247,19 +235,19 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonShowMyUsersActionPerformed
 
     private void jButtonShowMyUsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMyUsersMouseEntered
-        //jButtonShowMyUsers.setBackground(Color.decode("#800020")); // Cambiar el color de fondo        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButtonShowMyUsersMouseEntered
 
     private void jButtonShowMyUsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMyUsersMouseExited
-        //jButtonShowMyUsers.setBackground(Color.decode("#FFFFFF"));
+
     }//GEN-LAST:event_jButtonShowMyUsersMouseExited
 
     private void jButtonCalendarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCalendarMouseEntered
-        //jButtonHideMyUsers.setBackground(Color.decode("#800020")); 
+
     }//GEN-LAST:event_jButtonCalendarMouseEntered
 
     private void jButtonCalendarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCalendarMouseExited
-        //jButtonHideMyUsers.setBackground(Color.decode("#FFFFFF"));
+ 
     }//GEN-LAST:event_jButtonCalendarMouseExited
 
     private void jButtonShowMyUsersMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMyUsersMousePressed

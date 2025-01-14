@@ -50,8 +50,7 @@ public class JPanelLogin extends javax.swing.JPanel {
         jPanelCredentials.add(jButtonRegister);
         jPanelCredentials.add(jLabelLoginInfo);
         jPanelCredentials.add(jButtonResetPassword);
-        
-        
+
     }
 
     public void centerComponents(JPanel parentPanel, JComponent childComponent) { //Método sacado con ayuda de chatGPT por la necesidad de querer centrar la imagen.

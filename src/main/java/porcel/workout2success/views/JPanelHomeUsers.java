@@ -2,7 +2,6 @@ package porcel.workout2success.views;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,7 +33,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     private JPanelHome jPanelHome;
     private Main main;
-    
     String sessionUsername = Main.getUsername();
 
     private javax.swing.JList<Usuari> jListUsuaris;
@@ -43,10 +41,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         initComponents();
         this.jPanelHome = jPanelHome;
         this.main = main;
-        
-        //setSize(900, 600);
-        //setPreferredSize(new Dimension(900, 600));
-        
 
         inicializeTables();
         InicializejPanels();
@@ -460,7 +454,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonAddExerciceActionPerformed
 
     private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
-        //Main main = new Main();
         main.showAddUsersDialog();
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
@@ -512,8 +505,8 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonChangeWorkoutActionPerformed
 
     private void jScrollPaneUsersListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPaneUsersListMouseEntered
-        jListUsuaris.setSelectionBackground(Color.decode("#D98888")); // Cambia el fondo del elemento seleccionado
-        jListUsuaris.setSelectionForeground(Color.WHITE); // Cambia el color del texto en la selección
+        jListUsuaris.setSelectionBackground(Color.decode("#D98888"));
+        jListUsuaris.setSelectionForeground(Color.WHITE);
     }//GEN-LAST:event_jScrollPaneUsersListMouseEntered
 
 
@@ -553,7 +546,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jPanelHomeUsers.add(jButtonChangeUser, "cell 1 9");
         jPanelHomeUsers.add(jButtonDeleteUser, "cell 2 9");
 
-        jPanelHomeUsers.add(jLabelUsersWorkouts, "cell 4 0, span 6 0");//
+        jPanelHomeUsers.add(jLabelUsersWorkouts, "cell 4 0, span 6 0");
         jPanelHomeUsers.add(jScrollPaneUsersWorkout, "cell 4 1, span 7 3");
         jPanelHomeUsers.add(jButtonAddWorkout, "cell 4 4, span 3 0");
         jPanelHomeUsers.add(jButtonChangeWorkout, "cell 7 4, span 2 0");
@@ -571,7 +564,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     }
 
     private void InicialiceColors() {
-        jPanelHomeUsers.setBackground(Color.white); // Cambiar el color de fondo
+        jPanelHomeUsers.setBackground(Color.white);
         List<AbstractButton> butons = new ArrayList<>();
         butons.add(jButtonAddUser);
         butons.add(jButtonChangeUser);
@@ -585,8 +578,8 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         butons.add(jButtonRefresh);
 
         for (AbstractButton buton : butons) {
-            buton.setBackground(Color.decode("#D98888")); // Cambiar el color de fondo
-            buton.setForeground(Color.white); // Cambiar el color del texto (letra blanca)
+            buton.setBackground(Color.decode("#D98888"));
+            buton.setForeground(Color.white);
             buton.setFont(jButtonAddUser.getFont().deriveFont(Font.BOLD, 14f));
             buton.setBorder(BorderFactory.createLineBorder(new Color(80, 0, 20), 2));
             
@@ -620,7 +613,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                     int index = list.locationToIndex(e.getPoint());
                     if (hoverIndex != index) {
                         hoverIndex = index;
-                        list.repaint(); // Redibuja la lista
+                        list.repaint(); 
                     }
                 }
             });
@@ -648,7 +641,6 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 component.setBackground(Color.WHITE);
                 component.setForeground(Color.BLACK);
             }
-
             return component;
         }
     }
@@ -705,9 +697,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     public class CustomButtonRenderer {
 
         private int hoverIndex = -1;
-        private Color hoverColor = Color.decode("#D98888"); // Color de hover
-        private Color selectedColor = Color.decode("#800020"); // Color de selección (cuando se hace clic)
-        private JButton selectedButton = null; // Para recordar cuál es el botón seleccionado
+        private Color hoverColor = Color.decode("#D98888"); 
+        private Color selectedColor = Color.decode("#800020"); 
+        private JButton selectedButton = null; 
 
         public CustomButtonRenderer() {
             // No se necesita panel porque cada botón maneja su propio estado.
@@ -766,6 +758,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
     
+    // Listener para que los botones se pongan en una sola columna si el ancho de jScrollPaneUsersList baja por debajo de cierta cantidad
     private void addPanelOptionsResizeListener() {
         jPaneUsersList.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
