@@ -27,6 +27,7 @@ public class JDialogHomeUsersWorkoutsAdd extends javax.swing.JDialog {
         initComponents();
         inicialize();
         getAllMyUsers();
+        getRootPane().setDefaultButton(jButtonCreate);
     }
 
     private void inicialize() {

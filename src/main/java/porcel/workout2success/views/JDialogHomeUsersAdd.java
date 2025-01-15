@@ -4,6 +4,8 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JTextField;
 import porcel.workout2success.Main;
 import porcel.workout2success.dto.Usuari;
@@ -20,6 +22,8 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         initComponents();
 
         inicialize();
+        
+        getRootPane().setDefaultButton(jButtonCreate);
     }
 
     private void inicialize() {
@@ -64,10 +68,10 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         jLabelPassword = new javax.swing.JLabel();
         jTextFieldNom = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
-        jTextFieldPassword = new javax.swing.JTextField();
         jCheckBoxIsInstructor = new javax.swing.JCheckBox();
         jButtonCreate = new javax.swing.JButton();
         jLabelError = new javax.swing.JLabel();
+        jTextFieldPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -91,16 +95,17 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         jLabelPassword.setBounds(10, 90, 80, 20);
 
         jTextFieldNom.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextFieldNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomActionPerformed(evt);
+            }
+        });
         jPanelAddUser.add(jTextFieldNom);
         jTextFieldNom.setBounds(110, 30, 160, 20);
 
         jTextFieldEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelAddUser.add(jTextFieldEmail);
         jTextFieldEmail.setBounds(110, 60, 160, 20);
-
-        jTextFieldPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelAddUser.add(jTextFieldPassword);
-        jTextFieldPassword.setBounds(110, 90, 160, 20);
 
         jCheckBoxIsInstructor.setText("Yes");
         jPanelAddUser.add(jCheckBoxIsInstructor);
@@ -117,6 +122,10 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         jPanelAddUser.add(jLabelError);
         jLabelError.setBounds(90, 210, 0, 0);
 
+        jTextFieldPassword.setText("jPasswordField1");
+        jPanelAddUser.add(jTextFieldPassword);
+        jTextFieldPassword.setBounds(110, 90, 90, 22);
+
         getContentPane().add(jPanelAddUser);
         jPanelAddUser.setBounds(0, 0, 290, 230);
 
@@ -131,7 +140,16 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         if (jCheckBoxIsInstructor.isSelected()) {
             isInstructor = true;
         }
-
+        
+        String patternString = "[a-zA-Z0-9.-_]+@[a-zA-Z0-9]+.[a-zA-Z0-9.]*";
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(email);
+        
+        if (!matcher.matches()) {
+            jLabelError.setText("You have tu introduce a correct Email.");
+            return;
+        }
+                
         if (nom.isEmpty() || email.isEmpty() || password.isEmpty()) {
             jLabelError.setText("You have tu introduce Name, Email and Password.");
             return;
@@ -150,6 +168,10 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
+    private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreate;
     private javax.swing.JCheckBox jCheckBoxIsInstructor;
@@ -161,6 +183,6 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelAddUser;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNom;
-    private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JPasswordField jTextFieldPassword;
     // End of variables declaration//GEN-END:variables
 }

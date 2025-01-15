@@ -10,11 +10,11 @@ import porcel.workout2success.data.UsuariDAOImpl;
 import porcel.workout2success.dto.Usuari;
 import porcel.workout2success.data.UsuariDAO;
 
-public class JDialogConnectionStatus extends javax.swing.JDialog {
+public class Disabled_JDialogConnectionStatus extends javax.swing.JDialog {
 
     Main mainFrame;
 
-    public JDialogConnectionStatus(Main parent, boolean modal, String username, String userPassword) {
+    public Disabled_JDialogConnectionStatus(Main parent, boolean modal, String username, String userPassword) {
         super(parent, modal);
         this.mainFrame = parent;
         initComponents();

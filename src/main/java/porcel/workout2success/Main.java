@@ -2,7 +2,7 @@
 package porcel.workout2success;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import porcel.workout2success.views.JDialogConnectionStatus;
+import porcel.workout2success.views.Disabled_JDialogConnectionStatus;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -132,8 +132,8 @@ public class Main extends javax.swing.JFrame {
         setUsername(username);
         setPassword(password);
 
-        JDialogConnectionStatus jDialogConnectionStatus;
-        //jDialogConnectionStatus = new JDialogConnectionStatus(this, true, sessionUsername, sessionPassword);
+        Disabled_JDialogConnectionStatus jDialogConnectionStatus;
+        //jDialogConnectionStatus = new Disabled_JDialogConnectionStatus(this, true, sessionUsername, sessionPassword);
         //jDialogConnectionStatus.setLocationRelativeTo(this); // Lo centramos en mitad de la pantalla
         //jDialogConnectionStatus.setVisible(true);
         

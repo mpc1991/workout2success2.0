@@ -20,42 +20,46 @@
 > [!NOTE]
 > Visibility
 #####  * jPanelHome --> Ahora usa botones grandes en vez de los pequeños y rectangulares.
-#####  * jPanelHome --> jPanelOptions ahora muestra iconos grandes con metáforas para facilitar la interacción visual
+#####  * jPanelHome --> jPanelOptions ahora muestra iconos grandes con metáforas para facilitar la interacción visual.
 #####  * jPanelHomeUsers --> Se han quitado tablas dejando solo las importantes, haciendolo más ligero visualmente.
-#####  * jPanelHomeUsers --> Ahora la lista de texto plano se ha modificado por botones más grandes y aplicado Affordance
+#####  * jPanelHomeUsers --> Ahora la lista de texto plano se ha modificado por botones más grandes y aplicado Affordance.
 
 > [!NOTE]
 > Feedback
-#####  * Se ha añadido feedback visual al pasar por encima o clickar en los elementos destinados a ellos
+#####  * Se ha añadido feedback visual al pasar por encima o clickar en los elementos destinados a ello.
 
 > [!NOTE]
 > Natural Mapping
 #####  * Se han quitado elementos y separado funcionalidades.
-#####  * Se ha implantado un calendario en una página completamente diferente y facilmente accesible
-#####  * Los botones son facilmente identificables en la interfaz
+#####  * Se ha implantado un calendario en una página completamente diferente y facilmente accesible.
+#####  * Los botones son facilmente identificables en la interfaz.
 
 > [!NOTE]
 > Otros cambios adicionales:
-#####  * jPanelHome --> Ahora contiene un splitPane y dentro de él están los paneles jPanelOptions y jPanelShowInfo
-#####  * jPanelHome --> jLabelOptions ahora usa Miglayout para representar los botones
-#####  * jPanelHome --> Eliminados todos los setBounds
-#####  * jPanelHome --> Cambiado look & feel
+#####  * jPanelHome --> Ahora contiene un splitPane y dentro de él están los paneles jPanelOptions y jPanelShowInfo.
+#####  * jPanelHome --> jLabelOptions ahora usa Miglayout para representar los botones.
+#####  * jPanelHome --> Eliminados todos los setBounds.
+#####  * jPanelHome --> Cambiado look & feel.
 #####  * jPanelHome --> Ahora al entrar, por defecto nos muestra la pantalla de usuarios.
-#####  * jPanelHome --> Cuando se hace pequeño "jLabelOptions" a través del SplitPane, los iconos se colocan en una única fila y viceversa
+#####  * jPanelHome --> Cuando se hace pequeño "jLabelOptions" a través del SplitPane, los iconos se colocan en una única fila y viceversa.
 #####
-#####  * jPanelHomeUsers --> ahora usa Miglayout para representar todos sus elementos
-#####  * jPanelHomeUsers --> Cambiado look & feel
-#####  * jPanelHomeUsers --> Ahora usa MigLyout para mostrar la lista de usuarios usando botones en vez de una lista plana
-#####  * jPanelHomeUsers --> Ahora los botones cambian de color al realizar mouseEntered & mouseExited
-#####  * jPanelCalendar --> Se ha traspasado el calendario de la UD03, accesible desde jPanelHome --> jPanelOptions --> jButtonCalendar
+#####  * jPanelHomeUsers --> ahora usa Miglayout para representar todos sus elementos.
+#####  * jPanelHomeUsers --> Cambiado look & feel.
+#####  * jPanelHomeUsers --> Ahora usa MigLyout para mostrar la lista de usuarios usando botones en vez de una lista plana.
+#####  * jPanelHomeUsers --> Ahora los botones cambian de color al realizar mouseEntered & mouseExited.
+#####  * jPanelCalendar --> Se ha traspasado el calendario de la UD03, accesible desde jPanelHome --> jPanelOptions --> jButtonCalendar.
+#####  * jDialogHomeUsersAdd --> Botón jButtonCreate se ha puesto como predeterminado para que al pulsar enter se envíe el form.
+#####  * jDialogHomeUsersWorkoutsAdd --> Botón jButtonCreate se ha puesto como predeterminado para que al pulsar enter se envíe el form.
+#####  * jDialogHomeUsersExercicisAdd --> Botón jButtonCreate se ha puesto como predeterminado para que al pulsar enter se envíe el form.
+#####  * Tabulacion debe pasar a la siguiente casilla (esta accion ya parece hacerla por defecto).
 
 > [!NOTE]
 > Arreglos referentes a la v1
 #####  * Movida la estructura DAO a data.
 #####  * Modificada la estructura del Readme.
-#####  * El jDialog redundante en el inicio de sesión se ha suprimido
-#####  * Añadido mensaje de error de login en jPanelLogin
-#####  * Añadido botón de restablecer contraseña en jPanelLogin para evitar un GAP (sin funcionalidad actualmente)
+#####  * El jDialog redundante en el inicio de sesión se ha suprimido.
+#####  * Añadido mensaje de error de login en jPanelLogin.
+#####  * Añadido botón de restablecer contraseña en jPanelLogin para evitar un GAP (sin funcionalidad actualmente).
 
 > [!NOTE]
 > Páginas consultadas
@@ -65,22 +69,21 @@
 
 > [!WARNING]
 > Pendiente implementar/modificar que pueden dar problemas todavía
-#####  * Los botones Add, change, delete deben cambiarse a iconos. (Metaforas)
-#####  * Los botones "Create" para confirmar la creación debe cambiarse a icono de V y X y de color. (Metafora)
-#####  * Los botones "Create" para confirmar la creación debe cambiarse de color. (affordance)
-#####  * El icono de refresh debe cambiarse por una flecha giratoria (Metafora)
-#####  * El logout debería estar más en medio
-#####  * Revisar los refresh de las listas y tablas.
-#####  * Cuando se crea un usuario parece que no se asigna correctamente al instructor que toca y se asigna todo a Otero
-#####  * Poder cambiar los colores desde settings
-#####  * Poder buscar un usuario por nombre --> busqueda, filtros, paginacion
-#####  * Tecla enter debe enviar el form
-#####  * Tabulacion debe pasar a la siguiente casilla
+#####  * Los botones Add, change, delete deben cambiarse a iconos. (Metaforas).
+#####  * Los botones "Create" para confirmar la creación debe cambiarse a icono de V y X y de color. (Metafora).
+#####  * Los botones "Create" para confirmar la creación debe cambiarse de color. (affordance).
+#####  * El icono de refresh debe cambiarse por una flecha giratoria (Metafora).
+#####  * El logout debería estar más en medio.
+#####  * Revisar los refresh de las listas y tablas para que mantenga el usuario seleccionado.
+#####  * Cuando se crea un usuario parece que no se asigna correctamente al instructor que toca y se asigna todo a Otero.
+#####  * Poder cambiar los colores desde settings.
+#####  * Poder buscar un usuario por nombre --> busqueda, filtros, paginacion.
 #####  * Dark Pattern --> botón cancelar menos visible que el de aceptar.
-#####  * Regular expressions --> casilla correo
+#####  * Regular expressions --> casilla correo.
 
 > [!WARNING]
-> Criteris de qualificació
+> Criteris de qualificació 
+### Como se comentó en la tutoria, debido a la cantidad de trabajo casi infinita que podría suponer este tema se ha centralizado en los paneles que podían causar mayor impresion.
 #### Modificar el aspecto (look and feel) de las ventanas para hacerlas más atractivas y acorde con las tendencias actuales (p.ej. flat design, color scheme, etc.). 1p
 ##### - Se ha modificado la estética de las pantallas:
 ##### -- JPanelHome
