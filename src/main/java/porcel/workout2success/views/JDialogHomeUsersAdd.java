@@ -22,7 +22,7 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         initComponents();
 
         inicialize();
-        
+
         getRootPane().setDefaultButton(jButtonCreate);
     }
 
@@ -139,15 +139,16 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
             isInstructor = true;
         }
         
+        // expresión regular para el correo
         String patternString = "[a-zA-Z0-9.-_]+@[a-zA-Z0-9]+.[a-zA-Z0-9.]*";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(email);
-        
+
         if (!matcher.matches()) {
             jLabelError.setText("You have tu introduce a correct Email.");
             return;
         }
-                
+
         if (nom.isEmpty() || email.isEmpty() || password.isEmpty()) {
             jLabelError.setText("You have tu introduce Name, Email and Password.");
             return;
