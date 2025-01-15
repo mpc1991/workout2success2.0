@@ -121,10 +121,8 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         jButtonCreate.setBounds(70, 170, 72, 23);
         jPanelAddUser.add(jLabelError);
         jLabelError.setBounds(90, 210, 0, 0);
-
-        jTextFieldPassword.setText("jPasswordField1");
         jPanelAddUser.add(jTextFieldPassword);
-        jTextFieldPassword.setBounds(110, 90, 90, 22);
+        jTextFieldPassword.setBounds(110, 90, 64, 22);
 
         getContentPane().add(jPanelAddUser);
         jPanelAddUser.setBounds(0, 0, 290, 230);

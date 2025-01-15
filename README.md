@@ -52,6 +52,7 @@
 #####  * jDialogHomeUsersWorkoutsAdd --> Botón jButtonCreate se ha puesto como predeterminado para que al pulsar enter se envíe el form.
 #####  * jDialogHomeUsersExercicisAdd --> Botón jButtonCreate se ha puesto como predeterminado para que al pulsar enter se envíe el form.
 #####  * Tabulacion debe pasar a la siguiente casilla (esta accion ya parece hacerla por defecto).
+#####  * jDialogHomeUsersAdd --> Regular expressions --> casilla correo.
 
 > [!NOTE]
 > Arreglos referentes a la v1
@@ -115,7 +116,10 @@
 ##### -- jPanelHome -> jPanelOptions
 #####
 #### - Implementar la gestión de errores y excepciones necesaria, informando y dando feedback al usuario cuando sea necesario (no es necesario utilizar ninguna API de validación). 1p
+##### - Añadido aviso indicando que el mail no tiene una estructura correcta
+#####
 #### - Añadir más cambios a la interfaz que mejoren la usabilidad y documentarlos en el Readme.md del repositorio, justificando la solución adoptada, tanto a nivel de interfaz y componentes de la interfaz como a nivel de código. 3p
+##### - Documentados todos los cambios en el Readme
 #####
 #### - Clean code. Naming things. Project structure. Commits and github. Readme. 1p
 
