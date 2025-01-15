@@ -125,9 +125,11 @@
 
 > [!NOTE]
 > Capturas del antes y el despues
+> 
 ![antes](https://github.com/user-attachments/assets/c33895c7-3e91-4159-807d-f357fd3a89d1)
 ![despues](https://github.com/user-attachments/assets/e68f2f62-ca53-4e22-a128-08789cc7125b)
 
 > [!NOTE]
 > Paleta de colores usada
+> 
 ![idea_paleta](https://github.com/user-attachments/assets/3d06be23-61ef-4e78-9171-d8da5f98c337)
