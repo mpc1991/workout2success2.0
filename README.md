@@ -131,5 +131,7 @@
 
 > [!NOTE]
 > Paleta de colores usada
-> 
+> Fondo de color blanco
+> Bordes y énfasis: #D98888
+> Items clickables y mauseOver: #800020
 ![idea_paleta](https://github.com/user-attachments/assets/3d06be23-61ef-4e78-9171-d8da5f98c337)
