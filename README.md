@@ -53,6 +53,7 @@
 #####  * jDialogHomeUsersExercicisAdd --> Botón jButtonCreate se ha puesto como predeterminado para que al pulsar enter se envíe el form.
 #####  * Tabulacion debe pasar a la siguiente casilla (esta accion ya parece hacerla por defecto).
 #####  * jDialogHomeUsersAdd --> Regular expressions --> casilla correo.
+#####  * jDialogHomeUsersAdd --> Ahora usa jPasswordField para el campo de contraseña al añadir un usuario.
 
 > [!NOTE]
 > Arreglos referentes a la v1
@@ -80,7 +81,6 @@
 #####  * Poder cambiar los colores desde settings.
 #####  * Poder buscar un usuario por nombre --> busqueda, filtros, paginacion.
 #####  * Dark Pattern --> botón cancelar menos visible que el de aceptar.
-#####  * Regular expressions --> casilla correo.
 
 > [!WARNING]
 > Criteris de qualificació 
