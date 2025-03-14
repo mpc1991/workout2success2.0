@@ -97,7 +97,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
         jDialogAbout = new JDialogAbout(this, true);
-        setLocationRelativeTo(this); // Centramos el dialog
+        jDialogAbout.setLocationRelativeTo(this); // Centramos el dialog
         jDialogAbout.setVisible(true); // Mostramos el dialog
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 

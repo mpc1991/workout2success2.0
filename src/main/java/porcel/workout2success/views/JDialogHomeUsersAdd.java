@@ -36,6 +36,18 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         jLabelIsInstructor.setBounds(10, 160, 100, 40);
 
         jTextFieldNom.setBounds(120, 10, 310, 40);
+        jTextFieldNom.setEnabled(false);
+        jTextFieldNom.addKeyListener(new java.awt.event.KeyAdapter() {
+        
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent e) {
+                if (jTextFieldNom.getText().trim().isEmpty()) {
+                    jButtonCreate.setEnabled(false);
+                } else {
+                    jButtonCreate.setEnabled(true);
+                }
+            }
+        });
         jTextFieldEmail.setBounds(120, 60, 310, 40);
         jTextFieldPassword.setBounds(120, 110, 310, 40);
         jCheckBoxIsInstructor.setBounds(120, 160, 310, 40);
@@ -55,6 +67,9 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         jPanelAddUser.add(jCheckBoxIsInstructor);
         jPanelAddUser.add(jButtonCreate);
         jPanelAddUser.add(jLabelError);
+        
+        this.revalidate();
+        this.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -130,6 +145,7 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         String nom = jTextFieldNom.getText();
         String email = jTextFieldEmail.getText();
