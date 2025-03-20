@@ -11,10 +11,8 @@ import java.util.Properties;
 public class DataAccess {
 
     public static Connection getConnection() throws SQLException {
-
         Connection connection = null;
         Properties properties = new Properties();
-
         try {
             properties.load(DataAccess.class.getClassLoader().getResourceAsStream("properties/aplication.properties"));
             String connectionUrl = properties.getProperty("connectionUrl");

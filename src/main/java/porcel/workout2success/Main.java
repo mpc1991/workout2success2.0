@@ -18,6 +18,13 @@ import porcel.workout2success.views.JPanelLogin;
 import porcel.workout2success.views.JDialogAbout;
 import porcel.workout2success.views.JDialogUnderDevelopment;
 
+/**
+ * Classe encargada de manejar el jFrame.
+ * Adicionalmente se encarga de la interacción entre los diferentes paneles.
+ * @author Macia Porcel Cifre
+ * @version 2.0
+ * Informacion adicional en @link "https://github.com/mpc1991/workout2success2.0.git"
+ */
 public class Main extends javax.swing.JFrame {
 
     //Guardamos la sesión del entrenador
@@ -28,6 +35,10 @@ public class Main extends javax.swing.JFrame {
     private JPanelHome jPanelHome;
     private JDialogAbout jDialogAbout;
 
+    /**
+     * Constructor de la clase Main
+     * Inicializa la interfaz gráfica
+     */
     public Main() {
         initComponents();
 
@@ -101,6 +112,9 @@ public class Main extends javax.swing.JFrame {
         jDialogAbout.setVisible(true); // Mostramos el dialog
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
+    /**
+     * Muestra el panel de inicio de sesión
+     */
     public void showLoginPanel() {
         // Especificamos qué queremos ver cuando se abra la app
         jPanelLogin.setBounds(0, 0, 1280, 720);
@@ -111,6 +125,9 @@ public class Main extends javax.swing.JFrame {
         jMenuBarHome.setVisible(false);
     }
 
+    /**
+     * Pone en pantalla el panel principal de la aplicación
+     */
     public void showHomePanel() {
         // Creamos nuevo panel para que almacene correctamente sessionUsername una vez iniciada la sesión.
         jPanelHome = null;
@@ -128,6 +145,14 @@ public class Main extends javax.swing.JFrame {
         getContentPane().repaint();
     }
 
+    /**
+     * Dialogo que controla el inicio de sesión
+     * Si la contraseña es correcta y el usuario es instructor se mostrará el HOME de la aplicación
+     * Si la contraseña es incorrecta recibiremos el mensaje de err correspondiente y lo pasaremos al label de JPanelLogin
+     * 
+     * @param username almacena el nombre de usuario con el que se ha iniciado sesión
+     * @param password almacena la contraseña con la que se ha iniciado sesión
+     */
     public void showConnectionDialog(String username, String password) {
         setUsername(username);
         setPassword(password);
@@ -173,30 +198,46 @@ public class Main extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Muestra el cuadro de dialogo para agregar usuarios a la BBDD
+     */
     public void showAddUsersDialog() {
         JDialogHomeUsersAdd jDialogAddUsers = new JDialogHomeUsersAdd(this, true);
         jDialogAddUsers.setLocationRelativeTo(this);
         jDialogAddUsers.setVisible(true);
     }
 
+    /**
+     * Muestra el cuadro de dialogo para agregar workouts a la BBDD
+     */
     public void showAddWorkoutsDialog() {
         JDialogHomeUsersWorkoutsAdd jDialogAddWorkouts = new JDialogHomeUsersWorkoutsAdd(this, true, sessionUsername);
         jDialogAddWorkouts.setLocationRelativeTo(this);
         jDialogAddWorkouts.setVisible(true);
     }
 
+    /**
+     * Muestra el cuadro de dialogo para agregar Ejercicios a la BBDD
+     */
     public void showAddExercicisDialog() {
         JDialogHomeUsersExerciciAdd jDialogAddExercicis = new JDialogHomeUsersExerciciAdd(this, true, sessionUsername);
         jDialogAddExercicis.setLocationRelativeTo(this);
         jDialogAddExercicis.setVisible(true);
     }
 
+    /**
+     * Muestra el cuadro de dialogo comodín para las opciones que no están implementadas
+     */
     public void UnderDevelopment() {
         JDialogUnderDevelopment jDialogUnderDevelopment = new JDialogUnderDevelopment(this, true);
         jDialogUnderDevelopment.setLocationRelativeTo(this);
         jDialogUnderDevelopment.setVisible(true);
     }
 
+    /**
+     * Botón a través del cual se cierra sesión en el aplicativo
+     * @param evt 
+     */
     private void jMenuItemLogoutActionPerformed(ActionEvent evt) {
         // Indicamos qué queremos ver cuando el usuario cierre sesión.
         jPanelLogin.setVisible(true);
@@ -204,14 +245,26 @@ public class Main extends javax.swing.JFrame {
         jMenuBarHome.setVisible(false);
     }
 
+    /**
+     * Obtener el nombre de usuario de la sesión actual
+     * @return Nombre de usuario devuelto
+     */
     public static String getUsername() {
         return sessionUsername;
     }
 
+    /**
+     * Establece el nombre de usuario de la sesión actual
+     * @param username Nombre de usuario a establecer
+     */
     public static void setUsername(String username) {
         sessionUsername = username;
     }
 
+    /**
+     * Establece la password de la sesión actual
+     * @param password Password a establecer
+     */
     public static void setPassword(String password) {
         sessionPassword = password;
     }

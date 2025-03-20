@@ -4,10 +4,24 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import porcel.workout2success.Main;
 
-public class JPanelLogin extends javax.swing.JPanel {
-
+/**
+ * Interfaz inicial de la aplicación
+ * Existen tres paneles fundamentales: 
+ * jPanelCredentials representa la interfaz de inicio de sesión
+ * jPanelBanner representa el banner de la aplicación
+ * jPanelWelcomeMessage representa el mensaje de bienvenida así como información adicional
+ * @author Macià Porcel Cifre
+ * @version 2.0
+ */
+public class JPanelLogin extends javax.swing.JPanel {    
     private Main jFrameMain;
 
+    /**
+     * Constructor de la clase
+     * Inicializa los componentes gráficos
+     * 
+     * @param jFrameMain Referencia de la ventana principal de la aplicación
+     */
     public JPanelLogin(Main jFrameMain) {
         initComponents();
         this.jFrameMain = jFrameMain;
@@ -53,6 +67,12 @@ public class JPanelLogin extends javax.swing.JPanel {
 
     }
 
+    /**
+     * Centra el componente hijo dentro de un panel padre
+     * 
+     * @param parentPanel Panel padre
+     * @param childComponent Panel hijo a centrar
+     */
     public void centerComponents(JPanel parentPanel, JComponent childComponent) { //Método sacado con ayuda de chatGPT por la necesidad de querer centrar la imagen.
         int pWidth = parentPanel.getWidth();
         int pHeight = parentPanel.getHeight();
@@ -204,6 +224,12 @@ public class JPanelLogin extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
 
+    /**
+     * Evento llamado al hacer click en el botón jButtonLogin
+     * Obtiene el texto de los campos de usuario y contraseña y los pasa al método showConnectionDialog del jFrame
+     * 
+     * @param evt 
+     */
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         String username = jTextFieldUsername.getText();
         String password = new String(jPasswordFieldPassword.getPassword()); // Código adaptado de Stackoverflow https://stackoverflow.com/questions/10443308/why-gettext-in-jpasswordfield-was-deprecated
@@ -218,6 +244,12 @@ public class JPanelLogin extends javax.swing.JPanel {
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
 
     }//GEN-LAST:event_jButtonRegisterActionPerformed
+    
+    /**
+     * Label que va a mostrar información sobre el inicio de sesión
+     *
+     * @param text texto a mostrar en el label
+     */
     public void setJLabelLoginInfo(String text) {
         jLabelLoginInfo.setText(text);
     }

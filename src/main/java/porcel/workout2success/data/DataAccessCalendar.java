@@ -15,7 +15,7 @@ import porcel.workout2success.dto.WorkoutCalendar;
 
 public class DataAccessCalendar {
 
-    private static String connectionUrl = "jdbc:sqlserver://localhost:1433;database=simulabdb;user=sa;password=Pwd1234;encrypt=false;loginTimeout=10";
+    private static String connectionUrl = "jdbc:sqlserver://simulapsqlserver.database.windows.net:1433;database=simulapdb25;user=simulapdbadmin@simulapsqlserver;password=Pwd1234.;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
