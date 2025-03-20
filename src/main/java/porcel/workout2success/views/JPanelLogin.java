@@ -6,10 +6,14 @@ import porcel.workout2success.Main;
 
 /**
  * Interfaz inicial de la aplicación
- * Existen tres paneles fundamentales: 
- * jPanelCredentials representa la interfaz de inicio de sesión
- * jPanelBanner representa el banner de la aplicación
- * jPanelWelcomeMessage representa el mensaje de bienvenida así como información adicional
+ * 
+ * <p>Existen tres paneles fundamentales:</p>
+ * <ul>
+ *  <li><b>jPanelCredentials representa la interfaz de inicio de sesión</b></li>
+ *  <li><b>jPanelBanner representa el banner de la aplicación</b></li>
+ *  <li><b>jPanelWelcomeMessage representa el mensaje de bienvenida así como información adicional</b></li>
+ * </ul>
+ * 
  * @author Macià Porcel Cifre
  * @version 2.0
  */
@@ -17,8 +21,8 @@ public class JPanelLogin extends javax.swing.JPanel {
     private Main jFrameMain;
 
     /**
-     * Constructor de la clase
-     * Inicializa los componentes gráficos
+     * <p>Constructor de la clase</p>
+     * <p>Inicializa los componentes gráficos</p>
      * 
      * @param jFrameMain Referencia de la ventana principal de la aplicación
      */
@@ -247,7 +251,8 @@ public class JPanelLogin extends javax.swing.JPanel {
     
     /**
      * Label que va a mostrar información sobre el inicio de sesión
-     *
+     * Si se intenta iniciar sesión y el inicio falla este label mostrará la información del porqué ha fallado
+     * 
      * @param text texto a mostrar en el label
      */
     public void setJLabelLoginInfo(String text) {

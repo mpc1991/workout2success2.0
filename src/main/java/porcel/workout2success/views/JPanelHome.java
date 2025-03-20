@@ -13,6 +13,16 @@ import net.miginfocom.swing.MigLayout;
 import porcel.workout2success.listeners.MyCalendarListeners;
 import porcel.workout2success.listeners.hasWorkoutsEventArgs;
 
+/**
+ * <p>Panel principal de la aplicación una vez iniciada la sesión</p>
+ * <ul>
+ *  <li><b>Muestra un Menú (izquierda) con las diferentes opciones disponibles.</b></li>
+ *  <li><b>Contiene un panel (derecha) en blanco donde se van a visualizar las opciones seleccionadas en el menú</b></li>
+ * </ul>
+ * 
+ * @author Macia Porcel Cifre
+ * @version 2.0
+ */
 public class JPanelHome extends javax.swing.JPanel {
 
     private Main jFrameMain;
@@ -21,6 +31,11 @@ public class JPanelHome extends javax.swing.JPanel {
 
     String sessionUsername = Main.getUsername();
 
+    /**
+     * Constructor de la clase jPanelHome
+     * 
+     * @param jFrameMain Referencia de la ventana principal de la aplicación
+     */
     public JPanelHome(Main jFrameMain) {
         initComponents();
         this.jFrameMain = jFrameMain;
@@ -35,6 +50,9 @@ public class JPanelHome extends javax.swing.JPanel {
         addPanelOptionsResizeListener();
     }
 
+    /**
+     * Inicializa y coloca los paneles
+     */
     public void InicializejPanels() {
         jPanelOptions.setLayout(new MigLayout("wrap 2, fill", "5[fill]5[fill]5", "5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5[grow, fill]5"));
 
@@ -63,6 +81,9 @@ public class JPanelHome extends javax.swing.JPanel {
         jPanelCalendar.initializeCalendar();
     }
 
+    /**
+     * Configura los colores de los componentes de la interfaz
+     */
     private void InicialiceColors() {
         this.setBackground(Color.black);
         jPanelOptions.setBackground(Color.white);
@@ -83,6 +104,9 @@ public class JPanelHome extends javax.swing.JPanel {
         jButtonOptions.setFont(jButtonShowMyUsers.getFont().deriveFont(Font.BOLD, 14f));
     }
 
+    /**
+     * Configura la posición del texto en los botones
+     */
     private void inicialiceImages() {
         jButtonShowMyUsers.setHorizontalTextPosition(SwingConstants.CENTER);
         jButtonShowMyUsers.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -92,7 +116,9 @@ public class JPanelHome extends javax.swing.JPanel {
         jButtonOptions.setVerticalTextPosition(SwingConstants.BOTTOM);
     }
 
-    // Listener para alinear los iconos si jPanelOptions se hace pequeño
+    /**
+     * Contrae o expande el panel de opciones si este seredimensiona a cierto tamaño
+     */
     private void addPanelOptionsResizeListener() {
         jPanelOptions.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
@@ -210,6 +236,11 @@ public class JPanelHome extends javax.swing.JPanel {
         add(jSplitPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Al apretar el botón pondrá en pantalla jPanelCalendar 
+     * Al apretar el botón ocultará de la pantalla jPanelUsers
+     * @param evt 
+     */
     private void jButtonCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalendarActionPerformed
         jPanelUsers.setVisible(false);
         jPanelCalendar.setListeners(new MyCalendarListeners() {
@@ -225,6 +256,11 @@ public class JPanelHome extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonCalendarActionPerformed
 
+    /**
+     * Al apretar el botón pondrá en pantalla jPanelUsers
+     * Al apretar el botón ocultará de la pantalla jPanelCalender
+     * @param evt 
+     */
     private void jButtonShowMyUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowMyUsersActionPerformed
         jPanelUsers.setVisible(true);
         jPanelCalendar.setVisible(false);
@@ -250,6 +286,13 @@ public class JPanelHome extends javax.swing.JPanel {
  
     }//GEN-LAST:event_jButtonCalendarMouseExited
 
+    /**
+     * Cambia el color de fondo del botón jButtonShowMyUsers a #800020
+     * Cambia el color del texto del botón jButtonShowMyUsers a #FFFFFF
+     * Cambia el color de fondo de los demás botones a #D98888
+     * 
+     * @param evt 
+     */
     private void jButtonShowMyUsersMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMyUsersMousePressed
         jButtonShowMyUsers.setBackground(Color.decode("#800020"));
         jButtonShowMyUsers.setForeground(Color.decode("#FFFFFF"));
@@ -257,6 +300,13 @@ public class JPanelHome extends javax.swing.JPanel {
         jButtonOptions.setBackground(Color.decode("#D98888"));
     }//GEN-LAST:event_jButtonShowMyUsersMousePressed
 
+    /**
+     * Cambia el color de fondo del botón jButtonCalendar a #800020
+     * Cambia el color del texto del botón jButtonShowMyUsers a #FFFFFF
+     * Cambia el color de fondo de los demás botones a #D98888
+     * 
+     * @param evt 
+     */
     private void jButtonCalendarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCalendarMousePressed
         jButtonCalendar.setBackground(Color.decode("#800020"));
         jButtonCalendar.setForeground(Color.decode("#FFFFFF"));
@@ -272,6 +322,13 @@ public class JPanelHome extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonOptionsMouseExited
 
+    /**
+     * Cambia el color de fondo del botón jButtonOptions a #800020
+     * Cambia el color del texto del botón jButtonOptions a #FFFFFF
+     * Cambia el color de fondo de los demás botones a #D98888
+     * 
+     * @param evt 
+     */
     private void jButtonOptionsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOptionsMousePressed
         jButtonOptions.setBackground(Color.decode("#800020"));
         jButtonOptions.setForeground(Color.decode("#FFFFFF"));
@@ -279,6 +336,12 @@ public class JPanelHome extends javax.swing.JPanel {
         jButtonCalendar.setBackground(Color.decode("#D98888"));
     }//GEN-LAST:event_jButtonOptionsMousePressed
 
+    /**
+     * Visualizará el panel de opciones (todavía no implementado)
+     * Oculta el resto de paneles
+     * 
+     * @param evt 
+     */
     private void jButtonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionsActionPerformed
         jPanelUsers.setVisible(false);
         jPanelCalendar.setVisible(false);
