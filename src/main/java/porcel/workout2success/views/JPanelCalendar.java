@@ -22,6 +22,11 @@ import porcel.workout2success.dto.WorkoutCalendar;
 import porcel.workout2success.listeners.MyCalendarListeners;
 import porcel.workout2success.listeners.hasWorkoutsEventArgs;
 
+/**
+ *
+ * @author Macia Porcel Cifre
+ * @version 2.0
+ */
 public class JPanelCalendar extends JPanel {
 
     private int year;
@@ -33,6 +38,12 @@ public class JPanelCalendar extends JPanel {
     JPanel controlPanel;
     ArrayList<MyCalendarListeners> listeners = new ArrayList<>();
 
+    /**
+     * Constructor principal
+     *
+     * @param jPanelHome Referencia al panel contenedor de esta classe
+     * @param main Referenacia al Main
+     */
     public JPanelCalendar(JPanelHome jPanelHome, Main main) {
         LocalDate currentDate = LocalDate.now();
         this.year = currentDate.getYear();
@@ -41,16 +52,13 @@ public class JPanelCalendar extends JPanel {
         inicializeMovementDetection();
     }
 
+    /**
+     * Inicializa la barra de control superior del calendario
+     */
     public void inicialize() {
         this.setBorder(BorderFactory.createEtchedBorder());
         setLayout(new MigLayout("wrap 7, fill", "[grow, fill]", "[grow, fill]"));
-
-        // Logica de sacar los botones sacada con ayuda de chatGPT
-        // Crear el JPanel de control con el JComboBox y JSpinner
         controlPanel = new JPanel();
-        //controlPanel.setLayout(new MigLayout("wrap 3", "[grow][grow][grow]"));
-        //controlPanel = new JPanel(new MigLayout("wrap 4, insets 10", "[pref][grow][pref][grow]", "[]"));
-
 
         // Crear JComboBox para seleccionar mes
         String[] months = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
@@ -78,9 +86,11 @@ public class JPanelCalendar extends JPanel {
         controlPanel.add(monthComboBox, "span");
         controlPanel.add(new JLabel("Año:"));
         controlPanel.add(yearSpinner, "span");
-
     }
 
+    /**
+     * Inicializa el panel del calendario
+     */
     public void initializeCalendar() {
         removeAll(); // Limpiar el panel
 
@@ -117,7 +127,7 @@ public class JPanelCalendar extends JPanel {
             } else {
                 dayButton.setBackground(Color.white);
             }
-            
+
             ActionListener hasWorkoutsListener = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -142,8 +152,13 @@ public class JPanelCalendar extends JPanel {
         repaint();
     }
 
-    // Iniciamos un Mause Listener al apretar y soltar el click, 
-    // Si al soltar el click la diferencia en las coordenadas es positiva o negativa pasamos al mes siguiente o anterior.
+    /**
+     * <p>
+     * Mause Listener para cambiar de mes al hacer click y arrastrar </p>
+     * <p>
+     * Si al soltar el click la diferencia en las coordenadas es positiva o
+     * negativa pasamos al mes siguiente o anterior.</p>
+     */
     private void inicializeMovementDetection() {
         // Añadir los listeners de swipe
         addMouseListener(new MouseAdapter() {
@@ -168,26 +183,39 @@ public class JPanelCalendar extends JPanel {
         inicialize(); // refrescamos el calendario
     }
 
+    /**
+     * Método para establecer año y mes
+     *
+     * @param year referencia el año
+     * @param month referencia el mes
+     */
     public void setMonth(int year, int month) {
         this.year = year;
         this.month = month;
         initializeCalendar();
     }
 
-//    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(500, 400);
-//    }
-
+    /**
+     * Getter para obtener el color
+     *
+     * @return devuelve el color
+     */
     public Color getColor() {
         return color;
     }
 
+    /**
+     * Setter para establecer el color
+     *
+     * @param color recibido
+     */
     public void setColor(Color color) {
         this.color = color;
     }
 
-    // Cambios en los meses adaptado con ayuda de chatgpt
+    /**
+     * Método para mostrar el més siguiente al actual
+     */
     private void showNextMonth() {
         if (month == 12) {  // Si es diciembre
             month = 1;       // Poner el mes a enero
@@ -201,7 +229,9 @@ public class JPanelCalendar extends JPanel {
         initializeCalendar();  // Actualizar el calendario
     }
 
-// Muestra el calendario del mes anterior
+    /**
+     * Método para mostrar el més anterior al actual
+     */
     private void showPreviousMonth() {
         if (month == 1) {     // Si es enero
             month = 12;        // Poner el mes a diciembre
