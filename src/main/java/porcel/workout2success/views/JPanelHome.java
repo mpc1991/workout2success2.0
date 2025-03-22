@@ -237,8 +237,9 @@ public class JPanelHome extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Al apretar el botón pondrá en pantalla jPanelCalendar 
-     * Al apretar el botón ocultará de la pantalla jPanelUsers
+     * <p>Al apretar el botón pondrá en pantalla jPanelCalendar</p> 
+     * <p>Al apretar el botón ocultará de la pantalla jPanelUsers</p>
+     * 
      * @param evt 
      */
     private void jButtonCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalendarActionPerformed
@@ -257,8 +258,9 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonCalendarActionPerformed
 
     /**
-     * Al apretar el botón pondrá en pantalla jPanelUsers
-     * Al apretar el botón ocultará de la pantalla jPanelCalender
+     * <p>Al apretar el botón pondrá en pantalla jPanelUsers</p>
+     * <p>Al apretar el botón ocultará de la pantalla jPanelCalender</p>
+     * 
      * @param evt 
      */
     private void jButtonShowMyUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowMyUsersActionPerformed
@@ -287,9 +289,9 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonCalendarMouseExited
 
     /**
-     * Cambia el color de fondo del botón jButtonShowMyUsers a #800020
-     * Cambia el color del texto del botón jButtonShowMyUsers a #FFFFFF
-     * Cambia el color de fondo de los demás botones a #D98888
+     * <p>Cambia el color de fondo del botón jButtonShowMyUsers a #800020</p>
+     * <p>Cambia el color del texto del botón jButtonShowMyUsers a #FFFFFF</p>
+     * <p>Cambia el color de fondo de los demás botones a #D98888</p>
      * 
      * @param evt 
      */
@@ -301,9 +303,9 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonShowMyUsersMousePressed
 
     /**
-     * Cambia el color de fondo del botón jButtonCalendar a #800020
-     * Cambia el color del texto del botón jButtonShowMyUsers a #FFFFFF
-     * Cambia el color de fondo de los demás botones a #D98888
+     * <p>Cambia el color de fondo del botón jButtonCalendar a #800020</p>
+     * <p>Cambia el color del texto del botón jButtonShowMyUsers a #FFFFFF</p>
+     * <p>Cambia el color de fondo de los demás botones a #D98888</p>
      * 
      * @param evt 
      */
@@ -323,9 +325,9 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonOptionsMouseExited
 
     /**
-     * Cambia el color de fondo del botón jButtonOptions a #800020
-     * Cambia el color del texto del botón jButtonOptions a #FFFFFF
-     * Cambia el color de fondo de los demás botones a #D98888
+     * <p>Cambia el color de fondo del botón jButtonOptions a #800020</p>
+     * <p>Cambia el color del texto del botón jButtonOptions a #FFFFFF</p>
+     * <p>Cambia el color de fondo de los demás botones a #D98888</p>
      * 
      * @param evt 
      */
@@ -337,8 +339,8 @@ public class JPanelHome extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonOptionsMousePressed
 
     /**
-     * Visualizará el panel de opciones (todavía no implementado)
-     * Oculta el resto de paneles
+     * <p>Visualizará el panel de opciones (todavía no implementado)</p>
+     * <p>Oculta el resto de paneles</p>
      * 
      * @param evt 
      */

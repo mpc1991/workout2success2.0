@@ -19,8 +19,9 @@ import porcel.workout2success.views.JDialogAbout;
 import porcel.workout2success.views.JDialogUnderDevelopment;
 
 /**
- * Classe encargada de manejar el jFrame.
- * Adicionalmente se encarga de la interacción entre los diferentes paneles.
+ * <p>Classe encargada de manejar el jFrame.</p>
+ * <p>Adicionalmente se encarga de la interacción entre los diferentes paneles.</p>
+ * 
  * @author Macia Porcel Cifre
  * @version 2.0
  * Informacion adicional en @link "https://github.com/mpc1991/workout2success2.0.git"

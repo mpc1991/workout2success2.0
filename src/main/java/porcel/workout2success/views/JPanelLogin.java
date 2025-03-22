@@ -72,7 +72,7 @@ public class JPanelLogin extends javax.swing.JPanel {
     }
 
     /**
-     * Centra el componente hijo dentro de un panel padre
+     * <p>Método para centra el componente hijo dentro de un panel padre</p>
      * 
      * @param parentPanel Panel padre
      * @param childComponent Panel hijo a centrar
@@ -229,8 +229,8 @@ public class JPanelLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
 
     /**
-     * Evento llamado al hacer click en el botón jButtonLogin
-     * Obtiene el texto de los campos de usuario y contraseña y los pasa al método showConnectionDialog del jFrame
+     * <p>Evento llamado al hacer click en el botón jButtonLogin</p>
+     * <p>Obtiene el texto de los campos de usuario y contraseña y los pasa al método showConnectionDialog del jFrame</p>
      * 
      * @param evt 
      */
@@ -250,8 +250,8 @@ public class JPanelLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonRegisterActionPerformed
     
     /**
-     * Label que va a mostrar información sobre el inicio de sesión
-     * Si se intenta iniciar sesión y el inicio falla este label mostrará la información del porqué ha fallado
+     * <p>Label que va a mostrar información sobre el inicio de sesión</p>
+     * <p>Si se intenta iniciar sesión y el inicio falla este label mostrará la información del porqué ha fallado</p>
      * 
      * @param text texto a mostrar en el label
      */

@@ -29,6 +29,18 @@ import porcel.workout2success.dto.Workout;
 import porcel.workout2success.data.WorkoutDAO;
 import porcel.workout2success.data.WorkoutDAOImpl;
 
+/**
+ * <p>Classe que va a mostrar </p>
+ * <ul>
+ * <li>Lista de usuarios de la BBDD</li>
+ * <li>Lista de workouts de un usuario</li>
+ * <li>Lista de ejercicios en un workout</li>
+ * </ul>
+ * <p>Adcionalmente contiene los controles para crear, modificar o eliminar los objetos de las listas</p>
+ * 
+ * @author Macia Porcel Cifre
+ * @version 2.0
+ */
 public class JPanelHomeUsers extends javax.swing.JPanel {
 
     private JPanelHome jPanelHome;
@@ -37,6 +49,16 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     private javax.swing.JList<Usuari> jListUsuaris;
 
+    /**
+     * <p>Constructor de la clase</p>
+     * <ul>
+     * <li>Inicializa las tablas</li>
+     * <li>Coloca los paneles</li>
+     * <li>Pinta los objetos de todo el panel con el color por defecto</li>
+     * </ul>
+     * @param jPanelHome Referencia de la ventana donde se supermone esta ventana de la aplicación
+     * @param main Referencia de la ventana principal de la aplicación
+     */
     public JPanelHomeUsers(JPanelHome jPanelHome, Main main) {
         initComponents();
         this.jPanelHome = jPanelHome;
@@ -51,6 +73,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         refresh();
     }
 
+    /**
+     * Inicializa las tablas de usuarios, workouts y ejercicios
+     */
     private void inicializeTables() {
         jListUsuaris = new javax.swing.JList<>();
 
@@ -63,6 +88,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         jTableUsersExercicis.setModel(dtmjTableUsersExercicis);
     }
 
+    /**
+     * Refresca la información de las listas
+     */
     private void refresh() {
         inicializeJLitesteners();
         getListMyUsers();
@@ -72,6 +100,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         getListAllExercicisPerWorkout();
     }
 
+    /**
+     * Inicializa los listener de los usuarios y los workouts
+     */
     private void inicializeJLitesteners() {
         jListUsuaris.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -86,7 +117,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         });
     }
 
-    // Metodo para obtener la lista de usuarios del instructor que ha iniciado sesión en la aplicación.
+    /**
+     * Metodo para obtener la lista de usuarios del instructor que ha iniciado sesión en la aplicación.
+     */
     public void getListMyUsers() {
         jPaneUsersList.setLayout(new MigLayout(
                 "wrap 1, fill",
@@ -132,7 +165,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
-    // Metodo para obtener la lista de workouts del usuario que hemos marcado en la lista de usuarios.
+    /**
+     * Metodo para obtener la lista de workouts del usuario que hemos marcado en la lista de usuarios.
+     * @param id identificador del usuario que hemos marcado
+     */
     private void getListMyUsersWorkouts(int id) {
         WorkoutDAO workoutDAO = new WorkoutDAOImpl();
         try {
@@ -169,7 +205,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
-    // Metodo para obtener la lista de todos los workouts que existen en la BBDD.
+    /**
+     * Metodo para obtener la lista de todos los workouts que existen en la BBDD.
+     */
     private void getListAllMyUsersWorkouts() {
         WorkoutDAO workoutDAO = new WorkoutDAOImpl();
         try {
@@ -192,7 +230,10 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
-    // Metodo para obtener la lista de Ejercicios del Workouto que hemos marcado en la lista de workouts.
+    /**
+     * Metodo para obtener la lista de Ejercicios del Workout que hemos marcado en la lista de workouts.
+     * @param id identificador del workout que hemos marcado
+     */
     private void getListExercicisPerWorkout(int id) {
         ExerciciDAO exerciciDAO = new ExerciciDAOImpl();
         try {
@@ -222,7 +263,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
-    // Metodo para obtener la lista de todos los Ejercicios que existen en la BBDD.
+    /**
+     * Metodo para obtener la lista de todos los Ejercicios que existen en la BBDD.
+     */
     private void getListAllExercicisPerWorkout() {
         ExerciciDAO exerciciDAO = new ExerciciDAOImpl();
         try {
@@ -245,6 +288,15 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * <p>Evento que sucede al seleccionar un usuario en la lista</p>
+     * <ul>
+     * <li>Se almacena el ID del usuario</li>
+     * <li>Se llama al método "getListMyUsersWorkouts" para obtener la lista de workouts del usuario</li>
+     * </ul>
+     * @param evt 
+     * @param userId Almacena el ID del usuario
+     */
     @SuppressWarnings("unchecked")
     private void jListUsuarisValueChanged(javax.swing.event.ListSelectionEvent evt) {
         Usuari selectedUser = jListUsuaris.getSelectedValue();
@@ -257,6 +309,16 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * <p>Evento que sucede al seleccionar un Workout en la lista</p>
+     * <ul>
+     * <li>Se almacena el ID del workout</li>
+     * <li>Se llama al método "getListExercicisPerWorkout" para obtener la lista de Exercicis del workout</li>
+     * </ul>
+     * 
+     * @param evt 
+     * @param selectedWorkout Almacena el identificador del workout
+     */
     private void jTableUsuarisWorkoutsValuechanged(javax.swing.event.ListSelectionEvent evt) {
         if (!evt.getValueIsAdjusting()) {
             int selectedRow = jTableUsersWorkouts.getSelectedRow();
@@ -445,26 +507,62 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         add(jPanelHomeUsers, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonChangeExercice"</p>
+     * <p>Muestra un jDialog indicando que esta función todavía no está implementada</p>
+     * @param evt 
+     */
     private void jButtonChangeExerciceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeExerciceActionPerformed
         main.UnderDevelopment();
     }//GEN-LAST:event_jButtonChangeExerciceActionPerformed
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonAddExercice"</p>
+     * <p>Muestra un jDialog que contiene el formulario par añadir un Exercice</p>
+     * @param evt 
+     */
     private void jButtonAddExerciceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddExerciceActionPerformed
         main.showAddExercicisDialog();
     }//GEN-LAST:event_jButtonAddExerciceActionPerformed
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonAddUser"</p>
+     * <p>Muestra un jDialog que contiene el formulario par añadir un Usuario</p>
+     * @param evt 
+     */
     private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
         main.showAddUsersDialog();
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
+        /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonChangeUser"</p>
+     * <p>Muestra un jDialog indicando que esta función todavía no está implementada</p>
+     * @param evt 
+     */
     private void jButtonChangeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeUserActionPerformed
         main.UnderDevelopment();
     }//GEN-LAST:event_jButtonChangeUserActionPerformed
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonAddWorkout"</p>
+     * <p>Muestra un jDialog que contiene el formulario par añadir un Workout</p>
+     * @param evt 
+     */
     private void jButtonAddWorkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddWorkoutActionPerformed
         main.showAddWorkoutsDialog();
     }//GEN-LAST:event_jButtonAddWorkoutActionPerformed
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonDeleteExercice"</p>
+     * <ul>
+     * <li>Obtiene el ID del Ejercicio seleccionado</li>
+     * <li>llama al método "deleteExercici" y almacena el resultado en "result"</li>
+     * </ul>
+     * 
+     * @param evt 
+     * @param result almacena el resultado de intentar eliminar un ejercicio
+     * @exception Si el ejercicio no se ha podido eliminar, un jDialog se mostrará indicandonos el error.
+     */
     private void jButtonDeleteExerciceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteExerciceActionPerformed
         int selectedRow = jTableUsersExercicis.getSelectedRow();
         ExerciciDAO exerciciDAO = new ExerciciDAOImpl();
@@ -481,10 +579,27 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_jButtonDeleteExerciceActionPerformed
 
+    /**
+     * <p>Acción desencadenada al apretar el botón "jButtonRefresh"</p>
+     * <p>Refresca todas las listas de esta clase</p>
+     * 
+     * @param evt 
+     */
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         refresh();
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonDeleteWorkout"</p>
+     * <ul>
+     * <li>Obtiene el ID del workout seleccionado</li>
+     * <li>llama al método "deleteWorkout" y almacena el resultado en "result"</li>
+     * </ul>
+     * 
+     * @param evt 
+     * @param result almacena el resultado de intentar eliminar un workout
+     * @exception Si el ejercicio no se ha podido eliminar, un jDialog se mostrará indicandonos el error.
+     */
     private void jButtonDeleteWorkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteWorkoutActionPerformed
         int selectedRow = jTableUsersWorkouts.getSelectedRow();
         WorkoutDAO workoutDAO = new WorkoutDAOImpl();
@@ -500,10 +615,19 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_jButtonDeleteWorkoutActionPerformed
 
+    /**
+     * <p>Acción desencadenada al pulsar el botón "jButtonChangeWorkout"</p>
+     * <p>Muestra un jDialog indicando que esta función todavía no está implementada</p>
+     * @param evt 
+     */
     private void jButtonChangeWorkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeWorkoutActionPerformed
         main.UnderDevelopment();
     }//GEN-LAST:event_jButtonChangeWorkoutActionPerformed
 
+    /**
+     * listener para cambiar los colores de las listas al pasar por encima
+     * @param evt 
+     */
     private void jScrollPaneUsersListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPaneUsersListMouseEntered
         jListUsuaris.setSelectionBackground(Color.decode("#D98888"));
         jListUsuaris.setSelectionForeground(Color.WHITE);
@@ -533,6 +657,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
     private javax.swing.JTable jTableUsersWorkouts;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * <li>Inicializa las tablas</li>
+     */
     private void InicializejPanels() {
         jPanelHomeUsers.setLayout(new MigLayout(
                 "wrap 10, fill",
@@ -563,6 +690,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     }
 
+    /**
+     * <li>Pinta los objetos de todo el panel con el color por defecto</li>
+     */
     private void InicialiceColors() {
         jPanelHomeUsers.setBackground(Color.white);
         List<AbstractButton> butons = new ArrayList<>();
@@ -601,11 +731,18 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
 
     }
 
-    // Los siguientes métodos están adaptados con MUCHA ayuda de chatGPT pero necesitaba que esto existiese para el look & feel.
+    /**
+     * Método para cambiar el color de fondo de los elementos al pasar el cursor por encima o seleccionarlos
+     */
     public class CustomListRenderer extends DefaultListCellRenderer {
 
         private int hoverIndex = -1;
 
+        /**
+         * Constructor que inicializa el método y añade los listeners para detectar movimientos y selecciones del ratón
+         * 
+         * @param list 
+         */
         public CustomListRenderer(JList<?> list) {
             list.addMouseMotionListener(new MouseAdapter() {
                 @Override
@@ -627,6 +764,16 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             });
         }
 
+        /**
+         * Cambia la apariencia de los elementos según si estan seleccionados, resaltados o no
+         * 
+         * @param list la {@link JList} en la que se encuentra el elemento.
+         * @param value el valor del elemento en la lista.
+         * @param index la posición del elemento en la lista.
+         * @param isSelected {@code true} si el elemento está seleccionado, {@code false} en caso contrario.
+         * @param cellHasFocus {@code true} si la celda tiene el foco, {@code false} en caso contrario.
+         * @return el componente configurado con los estilos apropiados.
+        */
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
@@ -645,12 +792,22 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Método para cambiar el color de la celda cuando se pasa el ratón sobre ella
+     */
     public class CustomTableCellRenderer extends DefaultTableCellRenderer {
 
         private int hoverIndex = -1;
         private Color hoverColor = Color.decode("#D98888"); // Color por defecto para hover
         private Color selectedColor = Color.decode("#800020"); // Color por defecto para selección
 
+        /**
+         * Constructor
+         * 
+         * @param table la tabla a la que se le aplicarán los colores
+         * @param hoverColor Color para cuando pasamos el ratón por encima de una celda
+         * @param selectedColor Color para la celda seleccionada
+         */
         public CustomTableCellRenderer(JTable table, Color hoverColor, Color selectedColor) {
             this.hoverColor = hoverColor != null ? hoverColor : this.hoverColor;
             this.selectedColor = selectedColor != null ? selectedColor : this.selectedColor;
@@ -675,6 +832,17 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             });
         }
 
+        /**
+         * Método para la apariencia de las celdas de la tabla
+         * 
+         * @param table
+         * @param value valor de la celda
+         * @param isSelected indica si está seleccionada
+         * @param hasFocus indica si está seleccionada
+         * @param row fila de la celda
+         * @param column columna de la celda
+         * @return devolvemos el componente
+         */
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -694,6 +862,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Método para cambiar el color de los botones al pasar por encima o seleccionarlo
+     */
     public class CustomButtonRenderer {
 
         private int hoverIndex = -1;
@@ -705,7 +876,11 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             // No se necesita panel porque cada botón maneja su propio estado.
         }
 
-        // Método que configura los botones
+        /**
+         * Cambia el color del botón según si está seleccionado o no
+         * @param button Botón a pintar
+         * @param isSelected Indica si está seleccionado o no
+         */
         public void styleButton(JButton button, boolean isSelected) {
             if (isSelected) {
                 button.setBackground(selectedColor);
@@ -716,7 +891,11 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
             }
         }
 
-        // Agregar listeners para el hover y click
+        /**
+         * Listeners para el hover and click
+         * 
+         * @param button bottón al que se le agregarán los listener
+         */
         public void addHoverAndClickListener(JButton button) {
             button.addMouseMotionListener(new MouseAdapter() {
                 @Override
@@ -728,6 +907,7 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
                 }
             });
 
+            
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseExited(MouseEvent e) {
@@ -758,7 +938,9 @@ public class JPanelHomeUsers extends javax.swing.JPanel {
         }
     }
     
-    // Listener para que los botones se pongan en una sola columna si el ancho de jScrollPaneUsersList baja por debajo de cierta cantidad
+    /**
+     * Listener para que los botones se pongan en una sola columna si el ancho de jScrollPaneUsersList baja por debajo de cierta cantidad
+     */
     private void addPanelOptionsResizeListener() {
         jPaneUsersList.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
