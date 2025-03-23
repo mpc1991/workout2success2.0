@@ -7,7 +7,7 @@ import java.sql.SQLException;
  * 
  * @author Macia Porcel Cifre
  * @version 1.0
- * @param <T> 
+ * @param <T> Objeto a tratar
  */
 public interface DAO<T> {
 

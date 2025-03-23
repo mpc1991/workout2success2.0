@@ -12,6 +12,7 @@ import porcel.workout2success.dto.Usuari;
 /**
  * <p>Interfaz que define las operaciones de acceso a la BBDD para los Usuarios</p>
  * <p> Estiende de {@link DAO}
+ * 
  * @author Macia Porcel Cifre
  * @version 1.0
  */

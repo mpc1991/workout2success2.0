@@ -24,7 +24,7 @@ import porcel.workout2success.views.JDialogUnderDevelopment;
  * 
  * @author Macia Porcel Cifre
  * @version 2.0
- * @see https://github.com/mpc1991/workout2success2.0.git para obtener información adicional
+ * Ver https://github.com/mpc1991/workout2success2.0.git para obtener información adicional
  */
 public class Main extends javax.swing.JFrame {
 
