@@ -16,6 +16,13 @@ import porcel.workout2success.data.DataAccess;
 import porcel.workout2success.dto.Exercici;
 import static porcel.workout2success.data.DataAccess.getConnection;
 
+/**
+ * <p>Interfaz para realizar las interacciones con la BBDD de {@link ExerciciDAO}</p>
+ * <p>Contiene los métodos que interactuan con la BBDD</p>
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class ExerciciDAOImpl implements ExerciciDAO {
 
     @Override
@@ -38,6 +45,12 @@ public class ExerciciDAOImpl implements ExerciciDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Método para obtener una lista de ejercicios filtrados por un workout
+     * 
+     * @param oid identificador del workout a obtener
+     * @return Lista de workouts filtrada
+     */
     @Override
     public List<Exercici> getExercicisPerWorkout(int oid) {
         ArrayList<Exercici> exercicis = new ArrayList<>();
@@ -64,6 +77,12 @@ public class ExerciciDAOImpl implements ExerciciDAO {
         return exercicis;
     }
 
+    /**
+     * Obtiene la lista de todos los ejercicios de la BBDD
+     * 
+     * @return lista de todos los ejercicios de la BBDD
+     * @throws SQLException si da error en la consulta
+     */
     @Override
     public List<Exercici> getAll() throws SQLException {
         Connection con = DataAccess.getConnection();
@@ -90,6 +109,13 @@ public class ExerciciDAOImpl implements ExerciciDAO {
         return exercicisList;
     }
 
+    /**
+     * Inserta un ejercicio en un workout específico
+     * 
+     * @param idWorkout id del workout al que añadir el ejercicio
+     * @param idExercici id del ejercicio a implmenetar en el workout
+     * @return número de filas afectadas
+     */
     @Override
     public int insertExerciciPerWorkout(int idWorkout, int idExercici) {
         String sqlInsertExerciciWorkout = "INSERT INTO ExercicisWorkouts (IdWorkout, IdExercici) VALUES (?, ?)";
@@ -126,6 +152,12 @@ public class ExerciciDAOImpl implements ExerciciDAO {
         return 0;
     }
 
+    /**
+     * Elimina un ejercicio de la BBDD
+     * @param oid ID del ejercicio a eliminar
+     * @return número de filas afectadas
+     * @throws SQLException Si da error la eliminación
+     */
     @Override
     public int deleteExercici(int oid) throws SQLException {
         Connection con = DataAccess.getConnection();

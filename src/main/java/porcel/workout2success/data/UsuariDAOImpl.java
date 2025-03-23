@@ -11,8 +11,22 @@ import java.util.List;
 import porcel.workout2success.data.DataAccess;
 import porcel.workout2success.dto.Usuari;
 
+/**
+ * <p>Interfaz para realizar las interacciones con la BBDD de {@link UsuariDAO}</p>
+ * <p>Contiene los métodos que interactuan con la BBDD</p>
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class UsuariDAOImpl implements UsuariDAO {
 
+    /**
+     * Obtiene una lista de todos los usuarios almacenados en la BBDD
+     * 
+     * @param email filtro por el que vamos a obtener el usuario
+     * @return Objeto usuario
+     * @throws SQLException si da err la consulta
+     */
     @Override
     public Usuari get(String email) throws SQLException {
         Connection con = DataAccess.getConnection();
@@ -44,6 +58,12 @@ public class UsuariDAOImpl implements UsuariDAO {
         return usuari;
     }
 
+    /**
+     * Obtiene una lista de todos los usuarios almacenados en la BBDD
+     * 
+     * @return Lista de todos los usuarios de la BBDD
+     * @throws SQLException si salta un error en la consulta
+     */
     @Override
     public List<Usuari> getAll() throws SQLException {
         Connection con = DataAccess.getConnection();
@@ -76,6 +96,13 @@ public class UsuariDAOImpl implements UsuariDAO {
         return usuarisList;
     }
 
+    /**
+     * Método para obtener los usuarios del instructor que ha iniciado sesiçon
+     * 
+     * @param mail identificador del usuario a obtener
+     * @return Lista de usuarios
+     * @throws SQLException si da error la consulta
+     */
     @Override
     public List<Usuari> getMyUsers(String mail) throws SQLException {
 
@@ -103,11 +130,25 @@ public class UsuariDAOImpl implements UsuariDAO {
         return usuarisList;
     }
 
+    /**
+     * Método para guardar un usuario en la BBDD (todavía no implementado
+     * )
+     * @param usuari
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public int save(Usuari usuari) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Método para añadir un usuario en la BBDD
+     * 
+     * @param u usuario a añadir
+     * @return 
+     * @throws SQLException Si ocurre un error en la consulta
+     */
     @Override
     public int insert(Usuari u) throws SQLException {
         String sql = "INSERT INTO dbo.Usuaris (Nom, Email, PasswordHash, Instructor)"
@@ -127,6 +168,12 @@ public class UsuariDAOImpl implements UsuariDAO {
         return 0;
     }
 
+    /**
+     * Actualizar la información de un usuario en la BBDD
+     * @param usuari usuario a actualizar
+     * @return número de filas afectadas
+     * @throws SQLException si falla la consulta
+     */
     @Override
     public int update(Usuari usuari) throws SQLException {
         Connection con = DataAccess.getConnection();
@@ -150,6 +197,13 @@ public class UsuariDAOImpl implements UsuariDAO {
         return result;
     }
 
+    /**
+     * Elimina un usuario de la BBDD
+     * 
+     * @param usuari usuario a eliminar
+     * @return filas afectadas
+     * @throws SQLException si falla la consulta
+     */
     @Override
     public int delete(Usuari usuari) throws SQLException {
         Connection con = DataAccess.getConnection();
