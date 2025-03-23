@@ -23,7 +23,8 @@ import porcel.workout2success.listeners.MyCalendarListeners;
 import porcel.workout2success.listeners.hasWorkoutsEventArgs;
 
 /**
- *
+ * Clase que mostrará el calendario dentro del panel contenedor
+ * 
  * @author Macia Porcel Cifre
  * @version 2.0
  */

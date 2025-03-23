@@ -13,10 +13,23 @@ import java.util.Properties;
 import porcel.workout2success.dto.Workout;
 import porcel.workout2success.dto.WorkoutCalendar;
 
+/**
+ * <p>Clase dedicada a realizar la conexión con la BBDD para el calendario</p>
+ * <p>Proporciona métodos para recuperar entrenamientos almacenados en la BBDD</p>
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class DataAccessCalendar {
 
     private static String connectionUrl = "jdbc:sqlserver://simulapsqlserver.database.windows.net:1433;database=simulapdb25;user=simulapdbadmin@simulapsqlserver;password=Pwd1234.;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
+    /**
+     * Realiza la conexión a la BBDD usando los datos del archivo aplication.properties
+     * 
+     * @return Conexión a la BBDD
+     * @throws SQLException  Si ocurre un error al establecer la conexión
+     */
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
         Properties properties = new Properties();
@@ -30,6 +43,13 @@ public class DataAccessCalendar {
         return connection;
     }
 
+    /**
+     * Método para obtener una lista de fechas que conteinen workouts en un mes concreto
+     * 
+     * @param year Ano de los workouts a consultar
+     * @param month Mes de los workouts a consultar
+     * @return Lista de workouts de ese ano y mes
+     */
     public static List<LocalDate> getWorkoutDatesForMonth(int year, int month) {
         List<LocalDate> workoutDates = new ArrayList<>();
         String sql = "SELECT CONVERT(DATE, ForDate) AS workout_date FROM Workouts "
@@ -53,6 +73,12 @@ public class DataAccessCalendar {
         return workoutDates;
     }
 
+    /**
+     * Lista de workouts para un día en concreto
+     * 
+     * @param date día al que recuperar workouts
+     * @return Lista de workouts del día
+     */
     public static List<WorkoutCalendar> getWorkoutsForDay(LocalDate date) {
         List<WorkoutCalendar> workouts = new ArrayList<>();
         String query = """
