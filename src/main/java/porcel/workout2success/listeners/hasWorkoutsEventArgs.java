@@ -5,23 +5,50 @@ import java.util.EventObject;
 import java.util.List;
 import porcel.workout2success.dto.WorkoutCalendar;
 
+/**
+ * Evento llamado si hay workouts en el calendario
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class hasWorkoutsEventArgs extends EventObject {
 
     private List<WorkoutCalendar> workouts;
 
+    /**
+     * Constructor
+     * 
+     * @param source Objeto de evento
+     * @param workouts Lista de workouts
+     */
     public hasWorkoutsEventArgs(Object source, List<WorkoutCalendar> workouts) {
         super(source);
-        this.workouts = workouts;
+        this.workouts = workouts; 
     }
 
+    /**
+     * getter de workouts
+     * 
+     * @return lista de workouts 
+     */
     public List<WorkoutCalendar> getWorkouts() {
         return workouts;
     }
 
+    /**
+     * Setter de Workouts
+     * 
+     * @param workouts workouts a implementar
+     */
     public void setWorkouts(List<WorkoutCalendar> workouts) {
         this.workouts = workouts;
     }
 
+    /**
+     * Mñetodo toString para pasar los Workouts a cadena de texto
+     * 
+     * @return cadena de texto con los workouts
+     */
     @Override
     public String toString() {
         if (workouts == null || workouts.isEmpty()) {

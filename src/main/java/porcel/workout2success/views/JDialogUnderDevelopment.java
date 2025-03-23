@@ -4,10 +4,22 @@ package porcel.workout2success.views;
 import javax.swing.JTextField;
 import porcel.workout2success.Main;
 
+/**
+ * clase comodín para mostrar en caso de llamar a una actividad todavía no implementada
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class JDialogUnderDevelopment extends javax.swing.JDialog {
 
     Main mainFrame;
 
+    /**
+     * Constructor
+     * 
+     * @param parent Referencia a Main
+     * @param modal Recibe si debe ser modal o no
+     */
     public JDialogUnderDevelopment(Main parent, boolean modal) {
         super(parent, modal);
         this.mainFrame = parent;

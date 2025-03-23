@@ -19,6 +19,12 @@ import porcel.workout2success.dto.Workout;
 import porcel.workout2success.data.WorkoutDAO;
 import porcel.workout2success.data.WorkoutDAOImpl;
 
+/**
+ * Dialogo con el formulario para añadir Exercicies a un usuario en la BBDD
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
 
     Main mainFrame;
@@ -28,6 +34,13 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
 
     String sessionUsername = Main.getUsername();
 
+    /**
+     * Constructor
+     * 
+     * @param parent Referencia al Main
+     * @param modal Define si el dialogo sera modal
+     * @param sessionUsername contiene el usuario que ha iniciado sesión en la aplicación
+     */
     public JDialogHomeUsersExerciciAdd(Main parent, boolean modal, String sessionUsername) {
         super(parent, modal);
         this.mainFrame = parent;
@@ -40,6 +53,9 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
         getRootPane().setDefaultButton(jButtonCreate);
     }
 
+    /**
+     * Inicializa y ubica los componentes gráficos
+     */
     private void inicialize() {
         setSize(450, 320);
         if (jComboBoxSelectUser == null) {
@@ -81,6 +97,9 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
         jPanelAddWorkouts.add(jLabelError);
     }
 
+    /**
+     * Obtiene la lista de todos los usuarios del usuario que ha iniciado sesión y los muestra en el comboBox
+     */
     private void getAllMyUsers() {
         UsuariDAO usuariDAO = new UsuariDAOImpl();
         if (jComboBoxSelectUser == null) {
@@ -101,6 +120,11 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Obtiene los entrenamientos de un usuario específico y los muestra en el comboBox
+     * 
+     * @param id id del usuario a obtener
+     */
     private void getListMyUsersWorkouts(int id) {
         WorkoutDAO workoutDAO = new WorkoutDAOImpl();
         try {
@@ -118,6 +142,9 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Obtiene todos los Exercices y los muestra en el comboBox
+     */
     private void getAllExercices() {
         ExerciciDAO exerciciDAO = new ExerciciDAOImpl();
         try {
@@ -130,6 +157,9 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Inicializa los listeners para cuando seleccionamos un usuario
+     */
     private void initializeJListeners() {
         jComboBoxSelectUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +168,11 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
         });
     }
 
+    /**
+     * Evento que se ejecuta al seleccionar un usuario
+     * 
+     * @param evt 
+     */
     @SuppressWarnings("unchecked")
     private void jComboBoxSelectUserActionPerformed(java.awt.event.ActionEvent evt) {
         Usuari selectedUser = (Usuari) jComboBoxSelectUser.getSelectedItem();
@@ -233,6 +268,12 @@ public class JDialogHomeUsersExerciciAdd extends javax.swing.JDialog {
 
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * <p>acción desencadenada al apretar el botón "jButtonCreate"</p>
+     * <p>Obtiene los datos insertados en el formulario y crea un nuevo Exercice</p>
+     * 
+     * @param evt 
+     */
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         Workout selectedWorkout = (Workout) jComboBoxSelectWorkout.getSelectedItem();
         Exercici selectedExercici = (Exercici) jComboBoxSelectExercici.getSelectedItem();

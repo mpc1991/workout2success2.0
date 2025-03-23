@@ -12,10 +12,22 @@ import porcel.workout2success.dto.Usuari;
 import porcel.workout2success.data.UsuariDAO;
 import porcel.workout2success.data.UsuariDAOImpl;
 
+/**
+ * Dialogo con el formulario para añadir Usuarios a la BBDD
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class JDialogHomeUsersAdd extends javax.swing.JDialog {
 
     Main mainFrame;
 
+    /**
+     * Constructor
+     * 
+     * @param parent Referencia al Main
+     * @param modal Define si el dialogo sera modal
+     */
     public JDialogHomeUsersAdd(Main parent, boolean modal) {
         super(parent, modal);
         this.mainFrame = parent;
@@ -26,6 +38,9 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         getRootPane().setDefaultButton(jButtonCreate);
     }
 
+    /**
+     * Inicializa y ubica los componentes gráficos
+     */
     private void inicialize() {
         getContentPane().add(jPanelAddUser);
         setSize(450, 320);
@@ -145,7 +160,11 @@ public class JDialogHomeUsersAdd extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    /**
+     * <p>acción desencadenada al apretar el botón "jButtonCreate"</p>
+     * <p>Obtiene los datos insertados en el formulario y crea un nuevo Usuario</p>
+     * @param evt 
+     */
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         String nom = jTextFieldNom.getText();
         String email = jTextFieldEmail.getText();

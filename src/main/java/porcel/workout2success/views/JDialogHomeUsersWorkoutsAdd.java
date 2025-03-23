@@ -14,12 +14,25 @@ import porcel.workout2success.dto.Workout;
 import porcel.workout2success.data.WorkoutDAO;
 import porcel.workout2success.data.WorkoutDAOImpl;
 
+/**
+ * Dialogo con el formulario para añadir Workouts a un usuario en la BBDD
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class JDialogHomeUsersWorkoutsAdd extends javax.swing.JDialog {
 
     Main mainFrame;
     private javax.swing.JComboBox<Usuari> jComboBoxSelectUser;
     String sessionUsername = Main.getUsername();
 
+    /**
+     * Constructor
+     * 
+     * @param parent Referencia a la clase Main
+     * @param modal Define si el dialogo sera modal
+     * @param sessionUsername contiene el usuario que ha iniciado sesión en la aplicación
+     */
     public JDialogHomeUsersWorkoutsAdd(Main parent, boolean modal, String sessionUsername) {
         super(parent, modal);
         this.mainFrame = parent;
@@ -30,6 +43,9 @@ public class JDialogHomeUsersWorkoutsAdd extends javax.swing.JDialog {
         getRootPane().setDefaultButton(jButtonCreate);
     }
 
+    /**
+     * Inicializa y ubica los componentes gráficos
+     */
     private void inicialize() {
         setSize(450, 320);
         if (jComboBoxSelectUser == null) {
@@ -59,6 +75,9 @@ public class JDialogHomeUsersWorkoutsAdd extends javax.swing.JDialog {
         jPanelAddWorkouts.add(jLabelError);
     }
 
+    /**
+     * Obtiene la lista de todos los usuarios del usuario que ha iniciado sesión
+     */
     private void getAllMyUsers() {
         UsuariDAO usuariDAO = new UsuariDAOImpl();
         if (jComboBoxSelectUser == null) {
@@ -141,6 +160,12 @@ public class JDialogHomeUsersWorkoutsAdd extends javax.swing.JDialog {
 
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * <p>Acción desencadenada al apretar el botón "jButtonCreate"</p>
+     * 
+     * <p>Obtiene los datos ingresados en el formulario y añade a la BBDD el Workout</p>
+     * @param evt 
+     */
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         Usuari selectedUser = (Usuari) jComboBoxSelectUser.getSelectedItem();
         Date dateValue = (Date) jSpinnerSelectdate.getValue();

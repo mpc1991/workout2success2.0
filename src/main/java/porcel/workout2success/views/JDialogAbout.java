@@ -2,10 +2,22 @@ package porcel.workout2success.views;
 
 import porcel.workout2success.Main;
 
+/**
+ * Dialogo con información sobre la aplicación
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ */
 public class JDialogAbout extends javax.swing.JDialog {
 
     Main mainFrame;
 
+    /**
+     * Constructor
+     * 
+     * @param parent Referencia al Main
+     * @param modal Define si el dialogo sera modal
+     */
     public JDialogAbout(Main parent, boolean modal) {
         super(parent, modal);
         this.mainFrame = parent;

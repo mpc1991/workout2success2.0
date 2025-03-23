@@ -10,10 +10,25 @@ import porcel.workout2success.data.UsuariDAOImpl;
 import porcel.workout2success.dto.Usuari;
 import porcel.workout2success.data.UsuariDAO;
 
+/**
+ * Dialogo con información sobre la aplicación
+ * 
+ * @author Macia Porcel Cifre
+ * @version 1.0
+ * @deprecated Esta clase ya no se usa en la versión de la aplicación actual
+ */
 public class Disabled_JDialogConnectionStatus extends javax.swing.JDialog {
 
     Main mainFrame;
 
+    /**
+     * Constructor
+     * @param parent Referencia al main
+     * @param modal
+     * @param username
+     * @param userPassword 
+     * @deprecated Esta clase ya no se usa en la versión de la aplicación actual
+     */
     public Disabled_JDialogConnectionStatus(Main parent, boolean modal, String username, String userPassword) {
         super(parent, modal);
         this.mainFrame = parent;
