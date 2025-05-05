@@ -6,6 +6,7 @@ import porcel.workout2success.views.Disabled_JDialogConnectionStatus;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import porcel.workout2success.data.DataAccess;
 import porcel.workout2success.data.UsuariDAO;
 import porcel.workout2success.data.UsuariDAOImpl;
@@ -28,6 +29,8 @@ import porcel.workout2success.views.JDialogUnderDevelopment;
  */
 public class Main extends javax.swing.JFrame {
 
+    
+    
     //Guardamos la sesión del entrenador
     private static String sessionUsername;
     private static String sessionPassword;
@@ -42,7 +45,9 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-
+        this.setLocationRelativeTo(null);
+        ImageIcon icon = new ImageIcon(getClass().getResource("/logo/w2s_logo_butwhite2.png"));
+        this.setIconImage(icon.getImage());
         setSize(1280, 720);
         setResizable(true);
 
@@ -62,6 +67,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItemAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Workout2Success");
 
         jMenuBarHome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(80, 0, 20), 3, true));
 
@@ -310,5 +316,4 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemLogout;
     // End of variables declaration//GEN-END:variables
-
 }
